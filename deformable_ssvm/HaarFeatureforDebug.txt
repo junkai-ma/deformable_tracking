@@ -1,0 +1,1280 @@
+Number of the rects is 2,type of haarfeature is 0.
+The bbox is [151.500000,95.500000,7.000000,11.000000]
+[151.500000,95.500000,7.000000,5.000000],the weight is 1.000000
+[151.500000,101.000000,7.000000,5.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is -0.098090
+Number of the rects is 2,type of haarfeature is 1.
+The bbox is [151.500000,95.500000,7.000000,11.000000]
+[151.500000,95.500000,3.000000,11.000000],the weight is 1.000000
+[155.000000,95.500000,3.000000,11.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is -0.291317
+Number of the rects is 3,type of haarfeature is 2.
+The bbox is [151.500000,95.500000,7.000000,11.000000]
+[151.500000,95.500000,2.000000,11.000000],the weight is 1.000000
+[153.000000,95.500000,2.000000,11.000000],the weight is -2.000000
+[156.000000,95.500000,2.000000,11.000000],the weight is 1.000000
+the factor is 170.000000
+the value of the haar is -0.394118
+Number of the rects is 3,type of haarfeature is 3.
+The bbox is [151.500000,95.500000,7.000000,11.000000]
+[151.500000,95.500000,7.000000,3.000000],the weight is 1.000000
+[151.500000,99.000000,7.000000,3.000000],the weight is -2.000000
+[151.500000,102.000000,7.000000,3.000000],the weight is 1.000000
+the factor is 170.000000
+the value of the haar is 0.121161
+Number of the rects is 4,type of haarfeature is 4.
+The bbox is [151.500000,95.500000,7.000000,11.000000]
+[151.500000,95.500000,3.000000,5.000000],the weight is 1.000000
+[155.000000,101.000000,3.000000,5.000000],the weight is 1.000000
+[151.500000,101.000000,3.000000,5.000000],the weight is -1.000000
+[155.000000,95.500000,3.000000,5.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is 0.072727
+Number of the rects is 2,type of haarfeature is 5.
+The bbox is [151.500000,95.500000,7.000000,11.000000]
+[151.500000,95.500000,7.000000,11.000000],the weight is 1.000000
+[153.000000,98.000000,3.000000,5.000000],the weight is -4.000000
+the factor is 191.250000
+the value of the haar is -0.059214
+Number of the rects is 2,type of haarfeature is 0.
+The bbox is [148.000000,90.000000,14.000000,22.000000]
+[148.000000,90.000000,14.000000,11.000000],the weight is 1.000000
+[148.000000,101.000000,14.000000,11.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is -0.059282
+Number of the rects is 2,type of haarfeature is 1.
+The bbox is [148.000000,90.000000,14.000000,22.000000]
+[148.000000,90.000000,7.000000,22.000000],the weight is 1.000000
+[155.000000,90.000000,7.000000,22.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is -0.222918
+Number of the rects is 3,type of haarfeature is 2.
+The bbox is [148.000000,90.000000,14.000000,22.000000]
+[148.000000,90.000000,4.000000,22.000000],the weight is 1.000000
+[152.000000,90.000000,4.000000,22.000000],the weight is -2.000000
+[157.000000,90.000000,4.000000,22.000000],the weight is 1.000000
+the factor is 170.000000
+the value of the haar is -0.310581
+Number of the rects is 3,type of haarfeature is 3.
+The bbox is [148.000000,90.000000,14.000000,22.000000]
+[148.000000,90.000000,14.000000,7.000000],the weight is 1.000000
+[148.000000,97.000000,14.000000,7.000000],the weight is -2.000000
+[148.000000,104.000000,14.000000,7.000000],the weight is 1.000000
+the factor is 170.000000
+the value of the haar is 0.138655
+Number of the rects is 4,type of haarfeature is 4.
+The bbox is [148.000000,90.000000,14.000000,22.000000]
+[148.000000,90.000000,7.000000,11.000000],the weight is 1.000000
+[155.000000,101.000000,7.000000,11.000000],the weight is 1.000000
+[148.000000,101.000000,7.000000,11.000000],the weight is -1.000000
+[155.000000,90.000000,7.000000,11.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is 0.044767
+Number of the rects is 2,type of haarfeature is 5.
+The bbox is [148.000000,90.000000,14.000000,22.000000]
+[148.000000,90.000000,14.000000,22.000000],the weight is 1.000000
+[151.000000,95.000000,7.000000,11.000000],the weight is -4.000000
+the factor is 191.250000
+the value of the haar is -0.122638
+Number of the rects is 2,type of haarfeature is 0.
+The bbox is [158.500000,95.500000,7.000000,11.000000]
+[158.500000,95.500000,7.000000,5.000000],the weight is 1.000000
+[158.500000,101.000000,7.000000,5.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is -0.073644
+Number of the rects is 2,type of haarfeature is 1.
+The bbox is [158.500000,95.500000,7.000000,11.000000]
+[158.500000,95.500000,3.000000,11.000000],the weight is 1.000000
+[162.000000,95.500000,3.000000,11.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is -0.046753
+Number of the rects is 3,type of haarfeature is 2.
+The bbox is [158.500000,95.500000,7.000000,11.000000]
+[158.500000,95.500000,2.000000,11.000000],the weight is 1.000000
+[160.000000,95.500000,2.000000,11.000000],the weight is -2.000000
+[163.000000,95.500000,2.000000,11.000000],the weight is 1.000000
+the factor is 170.000000
+the value of the haar is 0.055615
+Number of the rects is 3,type of haarfeature is 3.
+The bbox is [158.500000,95.500000,7.000000,11.000000]
+[158.500000,95.500000,7.000000,3.000000],the weight is 1.000000
+[158.500000,99.000000,7.000000,3.000000],the weight is -2.000000
+[158.500000,102.000000,7.000000,3.000000],the weight is 1.000000
+the factor is 170.000000
+the value of the haar is -0.040031
+Number of the rects is 4,type of haarfeature is 4.
+The bbox is [158.500000,95.500000,7.000000,11.000000]
+[158.500000,95.500000,3.000000,5.000000],the weight is 1.000000
+[162.000000,101.000000,3.000000,5.000000],the weight is 1.000000
+[158.500000,101.000000,3.000000,5.000000],the weight is -1.000000
+[162.000000,95.500000,3.000000,5.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is -0.093405
+Number of the rects is 2,type of haarfeature is 5.
+The bbox is [158.500000,95.500000,7.000000,11.000000]
+[158.500000,95.500000,7.000000,11.000000],the weight is 1.000000
+[160.000000,98.000000,3.000000,5.000000],the weight is -4.000000
+the factor is 191.250000
+the value of the haar is 0.156048
+Number of the rects is 2,type of haarfeature is 0.
+The bbox is [155.000000,90.000000,14.000000,22.000000]
+[155.000000,90.000000,14.000000,11.000000],the weight is 1.000000
+[155.000000,101.000000,14.000000,11.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is 0.009015
+Number of the rects is 2,type of haarfeature is 1.
+The bbox is [155.000000,90.000000,14.000000,22.000000]
+[155.000000,90.000000,7.000000,22.000000],the weight is 1.000000
+[162.000000,90.000000,7.000000,22.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is 0.171581
+Number of the rects is 3,type of haarfeature is 2.
+The bbox is [155.000000,90.000000,14.000000,22.000000]
+[155.000000,90.000000,4.000000,22.000000],the weight is 1.000000
+[159.000000,90.000000,4.000000,22.000000],the weight is -2.000000
+[164.000000,90.000000,4.000000,22.000000],the weight is 1.000000
+the factor is 170.000000
+the value of the haar is 0.084912
+Number of the rects is 3,type of haarfeature is 3.
+The bbox is [155.000000,90.000000,14.000000,22.000000]
+[155.000000,90.000000,14.000000,7.000000],the weight is 1.000000
+[155.000000,97.000000,14.000000,7.000000],the weight is -2.000000
+[155.000000,104.000000,14.000000,7.000000],the weight is 1.000000
+the factor is 170.000000
+the value of the haar is 0.070588
+Number of the rects is 4,type of haarfeature is 4.
+The bbox is [155.000000,90.000000,14.000000,22.000000]
+[155.000000,90.000000,7.000000,11.000000],the weight is 1.000000
+[162.000000,101.000000,7.000000,11.000000],the weight is 1.000000
+[155.000000,101.000000,7.000000,11.000000],the weight is -1.000000
+[162.000000,90.000000,7.000000,11.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is -0.113063
+Number of the rects is 2,type of haarfeature is 5.
+The bbox is [155.000000,90.000000,14.000000,22.000000]
+[155.000000,90.000000,14.000000,22.000000],the weight is 1.000000
+[158.000000,95.000000,7.000000,11.000000],the weight is -4.000000
+the factor is 191.250000
+the value of the haar is 0.186062
+Number of the rects is 2,type of haarfeature is 0.
+The bbox is [165.500000,95.500000,7.000000,11.000000]
+[165.500000,95.500000,7.000000,5.000000],the weight is 1.000000
+[165.500000,101.000000,7.000000,5.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is 0.030456
+Number of the rects is 2,type of haarfeature is 1.
+The bbox is [165.500000,95.500000,7.000000,11.000000]
+[165.500000,95.500000,3.000000,11.000000],the weight is 1.000000
+[169.000000,95.500000,3.000000,11.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is -0.026483
+Number of the rects is 3,type of haarfeature is 2.
+The bbox is [165.500000,95.500000,7.000000,11.000000]
+[165.500000,95.500000,2.000000,11.000000],the weight is 1.000000
+[167.000000,95.500000,2.000000,11.000000],the weight is -2.000000
+[170.000000,95.500000,2.000000,11.000000],the weight is 1.000000
+the factor is 170.000000
+the value of the haar is -0.157525
+Number of the rects is 3,type of haarfeature is 3.
+The bbox is [165.500000,95.500000,7.000000,11.000000]
+[165.500000,95.500000,7.000000,3.000000],the weight is 1.000000
+[165.500000,99.000000,7.000000,3.000000],the weight is -2.000000
+[165.500000,102.000000,7.000000,3.000000],the weight is 1.000000
+the factor is 170.000000
+the value of the haar is -0.019251
+Number of the rects is 4,type of haarfeature is 4.
+The bbox is [165.500000,95.500000,7.000000,11.000000]
+[165.500000,95.500000,3.000000,5.000000],the weight is 1.000000
+[169.000000,101.000000,3.000000,5.000000],the weight is 1.000000
+[165.500000,101.000000,3.000000,5.000000],the weight is -1.000000
+[169.000000,95.500000,3.000000,5.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is 0.029743
+Number of the rects is 2,type of haarfeature is 5.
+The bbox is [165.500000,95.500000,7.000000,11.000000]
+[165.500000,95.500000,7.000000,11.000000],the weight is 1.000000
+[167.000000,98.000000,3.000000,5.000000],the weight is -4.000000
+the factor is 191.250000
+the value of the haar is 0.043664
+Number of the rects is 2,type of haarfeature is 0.
+The bbox is [162.000000,90.000000,14.000000,22.000000]
+[162.000000,90.000000,14.000000,11.000000],the weight is 1.000000
+[162.000000,101.000000,14.000000,11.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is 0.040820
+Number of the rects is 2,type of haarfeature is 1.
+The bbox is [162.000000,90.000000,14.000000,22.000000]
+[162.000000,90.000000,7.000000,22.000000],the weight is 1.000000
+[169.000000,90.000000,7.000000,22.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is -0.188108
+Number of the rects is 3,type of haarfeature is 2.
+The bbox is [162.000000,90.000000,14.000000,22.000000]
+[162.000000,90.000000,4.000000,22.000000],the weight is 1.000000
+[166.000000,90.000000,4.000000,22.000000],the weight is -2.000000
+[171.000000,90.000000,4.000000,22.000000],the weight is 1.000000
+the factor is 170.000000
+the value of the haar is 0.102960
+Number of the rects is 3,type of haarfeature is 3.
+The bbox is [162.000000,90.000000,14.000000,22.000000]
+[162.000000,90.000000,14.000000,7.000000],the weight is 1.000000
+[162.000000,97.000000,14.000000,7.000000],the weight is -2.000000
+[162.000000,104.000000,14.000000,7.000000],the weight is 1.000000
+the factor is 170.000000
+the value of the haar is 0.005176
+Number of the rects is 4,type of haarfeature is 4.
+The bbox is [162.000000,90.000000,14.000000,22.000000]
+[162.000000,90.000000,7.000000,11.000000],the weight is 1.000000
+[169.000000,101.000000,7.000000,11.000000],the weight is 1.000000
+[162.000000,101.000000,7.000000,11.000000],the weight is -1.000000
+[169.000000,90.000000,7.000000,11.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is 0.081258
+Number of the rects is 2,type of haarfeature is 5.
+The bbox is [162.000000,90.000000,14.000000,22.000000]
+[162.000000,90.000000,14.000000,22.000000],the weight is 1.000000
+[165.000000,95.000000,7.000000,11.000000],the weight is -4.000000
+the factor is 191.250000
+the value of the haar is 0.088906
+Number of the rects is 2,type of haarfeature is 0.
+The bbox is [172.500000,95.500000,7.000000,11.000000]
+[172.500000,95.500000,7.000000,5.000000],the weight is 1.000000
+[172.500000,101.000000,7.000000,5.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is -0.065699
+Number of the rects is 2,type of haarfeature is 1.
+The bbox is [172.500000,95.500000,7.000000,11.000000]
+[172.500000,95.500000,3.000000,11.000000],the weight is 1.000000
+[176.000000,95.500000,3.000000,11.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is -0.020576
+Number of the rects is 3,type of haarfeature is 2.
+The bbox is [172.500000,95.500000,7.000000,11.000000]
+[172.500000,95.500000,2.000000,11.000000],the weight is 1.000000
+[174.000000,95.500000,2.000000,11.000000],the weight is -2.000000
+[177.000000,95.500000,2.000000,11.000000],the weight is 1.000000
+the factor is 170.000000
+the value of the haar is -0.020779
+Number of the rects is 3,type of haarfeature is 3.
+The bbox is [172.500000,95.500000,7.000000,11.000000]
+[172.500000,95.500000,7.000000,3.000000],the weight is 1.000000
+[172.500000,99.000000,7.000000,3.000000],the weight is -2.000000
+[172.500000,102.000000,7.000000,3.000000],the weight is 1.000000
+the factor is 170.000000
+the value of the haar is 0.016043
+Number of the rects is 4,type of haarfeature is 4.
+The bbox is [172.500000,95.500000,7.000000,11.000000]
+[172.500000,95.500000,3.000000,5.000000],the weight is 1.000000
+[176.000000,101.000000,3.000000,5.000000],the weight is 1.000000
+[172.500000,101.000000,3.000000,5.000000],the weight is -1.000000
+[176.000000,95.500000,3.000000,5.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is 0.011510
+Number of the rects is 2,type of haarfeature is 5.
+The bbox is [172.500000,95.500000,7.000000,11.000000]
+[172.500000,95.500000,7.000000,11.000000],the weight is 1.000000
+[174.000000,98.000000,3.000000,5.000000],the weight is -4.000000
+the factor is 191.250000
+the value of the haar is 0.231288
+Number of the rects is 2,type of haarfeature is 0.
+The bbox is [169.000000,90.000000,14.000000,22.000000]
+[169.000000,90.000000,14.000000,11.000000],the weight is 1.000000
+[169.000000,101.000000,14.000000,11.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is -0.057576
+Number of the rects is 2,type of haarfeature is 1.
+The bbox is [169.000000,90.000000,14.000000,22.000000]
+[169.000000,90.000000,7.000000,22.000000],the weight is 1.000000
+[176.000000,90.000000,7.000000,22.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is -0.106977
+Number of the rects is 3,type of haarfeature is 2.
+The bbox is [169.000000,90.000000,14.000000,22.000000]
+[169.000000,90.000000,4.000000,22.000000],the weight is 1.000000
+[173.000000,90.000000,4.000000,22.000000],the weight is -2.000000
+[178.000000,90.000000,4.000000,22.000000],the weight is 1.000000
+the factor is 170.000000
+the value of the haar is -0.077865
+Number of the rects is 3,type of haarfeature is 3.
+The bbox is [169.000000,90.000000,14.000000,22.000000]
+[169.000000,90.000000,14.000000,7.000000],the weight is 1.000000
+[169.000000,97.000000,14.000000,7.000000],the weight is -2.000000
+[169.000000,104.000000,14.000000,7.000000],the weight is 1.000000
+the factor is 170.000000
+the value of the haar is 0.054144
+Number of the rects is 4,type of haarfeature is 4.
+The bbox is [169.000000,90.000000,14.000000,22.000000]
+[169.000000,90.000000,7.000000,11.000000],the weight is 1.000000
+[176.000000,101.000000,7.000000,11.000000],the weight is 1.000000
+[169.000000,101.000000,7.000000,11.000000],the weight is -1.000000
+[176.000000,90.000000,7.000000,11.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is 0.017138
+Number of the rects is 2,type of haarfeature is 5.
+The bbox is [169.000000,90.000000,14.000000,22.000000]
+[169.000000,90.000000,14.000000,22.000000],the weight is 1.000000
+[172.000000,95.000000,7.000000,11.000000],the weight is -4.000000
+the factor is 191.250000
+the value of the haar is -0.049215
+Number of the rects is 2,type of haarfeature is 0.
+The bbox is [151.500000,106.500000,7.000000,11.000000]
+[151.500000,106.500000,7.000000,5.000000],the weight is 1.000000
+[151.500000,112.000000,7.000000,5.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is 0.004787
+Number of the rects is 2,type of haarfeature is 1.
+The bbox is [151.500000,106.500000,7.000000,11.000000]
+[151.500000,106.500000,3.000000,11.000000],the weight is 1.000000
+[155.000000,106.500000,3.000000,11.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is -0.170206
+Number of the rects is 3,type of haarfeature is 2.
+The bbox is [151.500000,106.500000,7.000000,11.000000]
+[151.500000,106.500000,2.000000,11.000000],the weight is 1.000000
+[153.000000,106.500000,2.000000,11.000000],the weight is -2.000000
+[156.000000,106.500000,2.000000,11.000000],the weight is 1.000000
+the factor is 170.000000
+the value of the haar is -0.260581
+Number of the rects is 3,type of haarfeature is 3.
+The bbox is [151.500000,106.500000,7.000000,11.000000]
+[151.500000,106.500000,7.000000,3.000000],the weight is 1.000000
+[151.500000,110.000000,7.000000,3.000000],the weight is -2.000000
+[151.500000,113.000000,7.000000,3.000000],the weight is 1.000000
+the factor is 170.000000
+the value of the haar is 0.017723
+Number of the rects is 4,type of haarfeature is 4.
+The bbox is [151.500000,106.500000,7.000000,11.000000]
+[151.500000,106.500000,3.000000,5.000000],the weight is 1.000000
+[155.000000,112.000000,3.000000,5.000000],the weight is 1.000000
+[151.500000,112.000000,3.000000,5.000000],the weight is -1.000000
+[155.000000,106.500000,3.000000,5.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is -0.049096
+Number of the rects is 2,type of haarfeature is 5.
+The bbox is [151.500000,106.500000,7.000000,11.000000]
+[151.500000,106.500000,7.000000,11.000000],the weight is 1.000000
+[153.000000,109.000000,3.000000,5.000000],the weight is -4.000000
+the factor is 191.250000
+the value of the haar is 0.047398
+Number of the rects is 2,type of haarfeature is 0.
+The bbox is [148.000000,101.000000,14.000000,22.000000]
+[148.000000,101.000000,14.000000,11.000000],the weight is 1.000000
+[148.000000,112.000000,14.000000,11.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is -0.017647
+Number of the rects is 2,type of haarfeature is 1.
+The bbox is [148.000000,101.000000,14.000000,22.000000]
+[148.000000,101.000000,7.000000,22.000000],the weight is 1.000000
+[155.000000,101.000000,7.000000,22.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is -0.068831
+Number of the rects is 3,type of haarfeature is 2.
+The bbox is [148.000000,101.000000,14.000000,22.000000]
+[148.000000,101.000000,4.000000,22.000000],the weight is 1.000000
+[152.000000,101.000000,4.000000,22.000000],the weight is -2.000000
+[157.000000,101.000000,4.000000,22.000000],the weight is 1.000000
+the factor is 170.000000
+the value of the haar is -0.244175
+Number of the rects is 3,type of haarfeature is 3.
+The bbox is [148.000000,101.000000,14.000000,22.000000]
+[148.000000,101.000000,14.000000,7.000000],the weight is 1.000000
+[148.000000,108.000000,14.000000,7.000000],the weight is -2.000000
+[148.000000,115.000000,14.000000,7.000000],the weight is 1.000000
+the factor is 170.000000
+the value of the haar is -0.033957
+Number of the rects is 4,type of haarfeature is 4.
+The bbox is [148.000000,101.000000,14.000000,22.000000]
+[148.000000,101.000000,7.000000,11.000000],the weight is 1.000000
+[155.000000,112.000000,7.000000,11.000000],the weight is 1.000000
+[148.000000,112.000000,7.000000,11.000000],the weight is -1.000000
+[155.000000,101.000000,7.000000,11.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is -0.198854
+Number of the rects is 2,type of haarfeature is 5.
+The bbox is [148.000000,101.000000,14.000000,22.000000]
+[148.000000,101.000000,14.000000,22.000000],the weight is 1.000000
+[151.000000,106.000000,7.000000,11.000000],the weight is -4.000000
+the factor is 191.250000
+the value of the haar is -0.220609
+Number of the rects is 2,type of haarfeature is 0.
+The bbox is [158.500000,106.500000,7.000000,11.000000]
+[158.500000,106.500000,7.000000,5.000000],the weight is 1.000000
+[158.500000,112.000000,7.000000,5.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is -0.056634
+Number of the rects is 2,type of haarfeature is 1.
+The bbox is [158.500000,106.500000,7.000000,11.000000]
+[158.500000,106.500000,3.000000,11.000000],the weight is 1.000000
+[162.000000,106.500000,3.000000,11.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is 0.110924
+Number of the rects is 3,type of haarfeature is 2.
+The bbox is [158.500000,106.500000,7.000000,11.000000]
+[158.500000,106.500000,2.000000,11.000000],the weight is 1.000000
+[160.000000,106.500000,2.000000,11.000000],the weight is -2.000000
+[163.000000,106.500000,2.000000,11.000000],the weight is 1.000000
+the factor is 170.000000
+the value of the haar is -0.014820
+Number of the rects is 3,type of haarfeature is 3.
+The bbox is [158.500000,106.500000,7.000000,11.000000]
+[158.500000,106.500000,7.000000,3.000000],the weight is 1.000000
+[158.500000,110.000000,7.000000,3.000000],the weight is -2.000000
+[158.500000,113.000000,7.000000,3.000000],the weight is 1.000000
+the factor is 170.000000
+the value of the haar is -0.045531
+Number of the rects is 4,type of haarfeature is 4.
+The bbox is [158.500000,106.500000,7.000000,11.000000]
+[158.500000,106.500000,3.000000,5.000000],the weight is 1.000000
+[162.000000,112.000000,3.000000,5.000000],the weight is 1.000000
+[158.500000,112.000000,3.000000,5.000000],the weight is -1.000000
+[162.000000,106.500000,3.000000,5.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is 0.103692
+Number of the rects is 2,type of haarfeature is 5.
+The bbox is [158.500000,106.500000,7.000000,11.000000]
+[158.500000,106.500000,7.000000,11.000000],the weight is 1.000000
+[160.000000,109.000000,3.000000,5.000000],the weight is -4.000000
+the factor is 191.250000
+the value of the haar is 0.142602
+Number of the rects is 2,type of haarfeature is 0.
+The bbox is [155.000000,101.000000,14.000000,22.000000]
+[155.000000,101.000000,14.000000,11.000000],the weight is 1.000000
+[155.000000,112.000000,14.000000,11.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is 0.103922
+Number of the rects is 2,type of haarfeature is 1.
+The bbox is [155.000000,101.000000,14.000000,22.000000]
+[155.000000,101.000000,7.000000,22.000000],the weight is 1.000000
+[162.000000,101.000000,7.000000,22.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is 0.207359
+Number of the rects is 3,type of haarfeature is 2.
+The bbox is [155.000000,101.000000,14.000000,22.000000]
+[155.000000,101.000000,4.000000,22.000000],the weight is 1.000000
+[159.000000,101.000000,4.000000,22.000000],the weight is -2.000000
+[164.000000,101.000000,4.000000,22.000000],the weight is 1.000000
+the factor is 170.000000
+the value of the haar is -0.004507
+Number of the rects is 3,type of haarfeature is 3.
+The bbox is [155.000000,101.000000,14.000000,22.000000]
+[155.000000,101.000000,14.000000,7.000000],the weight is 1.000000
+[155.000000,108.000000,14.000000,7.000000],the weight is -2.000000
+[155.000000,115.000000,14.000000,7.000000],the weight is 1.000000
+the factor is 170.000000
+the value of the haar is -0.099905
+Number of the rects is 4,type of haarfeature is 4.
+The bbox is [155.000000,101.000000,14.000000,22.000000]
+[155.000000,101.000000,7.000000,11.000000],the weight is 1.000000
+[162.000000,112.000000,7.000000,11.000000],the weight is 1.000000
+[155.000000,112.000000,7.000000,11.000000],the weight is -1.000000
+[162.000000,101.000000,7.000000,11.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is 0.077285
+Number of the rects is 2,type of haarfeature is 5.
+The bbox is [155.000000,101.000000,14.000000,22.000000]
+[155.000000,101.000000,14.000000,22.000000],the weight is 1.000000
+[158.000000,106.000000,7.000000,11.000000],the weight is -4.000000
+the factor is 191.250000
+the value of the haar is -0.140345
+Number of the rects is 2,type of haarfeature is 0.
+The bbox is [165.500000,106.500000,7.000000,11.000000]
+[165.500000,106.500000,7.000000,5.000000],the weight is 1.000000
+[165.500000,112.000000,7.000000,5.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is -0.121518
+Number of the rects is 2,type of haarfeature is 1.
+The bbox is [165.500000,106.500000,7.000000,11.000000]
+[165.500000,106.500000,3.000000,11.000000],the weight is 1.000000
+[169.000000,106.500000,3.000000,11.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is -0.182531
+Number of the rects is 3,type of haarfeature is 2.
+The bbox is [165.500000,106.500000,7.000000,11.000000]
+[165.500000,106.500000,2.000000,11.000000],the weight is 1.000000
+[167.000000,106.500000,2.000000,11.000000],the weight is -2.000000
+[170.000000,106.500000,2.000000,11.000000],the weight is 1.000000
+the factor is 170.000000
+the value of the haar is 0.120168
+Number of the rects is 3,type of haarfeature is 3.
+The bbox is [165.500000,106.500000,7.000000,11.000000]
+[165.500000,106.500000,7.000000,3.000000],the weight is 1.000000
+[165.500000,110.000000,7.000000,3.000000],the weight is -2.000000
+[165.500000,113.000000,7.000000,3.000000],the weight is 1.000000
+the factor is 170.000000
+the value of the haar is 0.129412
+Number of the rects is 4,type of haarfeature is 4.
+The bbox is [165.500000,106.500000,7.000000,11.000000]
+[165.500000,106.500000,3.000000,5.000000],the weight is 1.000000
+[169.000000,112.000000,3.000000,5.000000],the weight is 1.000000
+[165.500000,112.000000,3.000000,5.000000],the weight is -1.000000
+[169.000000,106.500000,3.000000,5.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is -0.069570
+Number of the rects is 2,type of haarfeature is 5.
+The bbox is [165.500000,106.500000,7.000000,11.000000]
+[165.500000,106.500000,7.000000,11.000000],the weight is 1.000000
+[167.000000,109.000000,3.000000,5.000000],the weight is -4.000000
+the factor is 191.250000
+the value of the haar is 0.323504
+Number of the rects is 2,type of haarfeature is 0.
+The bbox is [162.000000,101.000000,14.000000,22.000000]
+[162.000000,101.000000,14.000000,11.000000],the weight is 1.000000
+[162.000000,112.000000,14.000000,11.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is -0.046677
+Number of the rects is 2,type of haarfeature is 1.
+The bbox is [162.000000,101.000000,14.000000,22.000000]
+[162.000000,101.000000,7.000000,22.000000],the weight is 1.000000
+[169.000000,101.000000,7.000000,22.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is -0.342679
+Number of the rects is 3,type of haarfeature is 2.
+The bbox is [162.000000,101.000000,14.000000,22.000000]
+[162.000000,101.000000,4.000000,22.000000],the weight is 1.000000
+[166.000000,101.000000,4.000000,22.000000],the weight is -2.000000
+[171.000000,101.000000,4.000000,22.000000],the weight is 1.000000
+the factor is 170.000000
+the value of the haar is 0.189935
+Number of the rects is 3,type of haarfeature is 3.
+The bbox is [162.000000,101.000000,14.000000,22.000000]
+[162.000000,101.000000,14.000000,7.000000],the weight is 1.000000
+[162.000000,108.000000,14.000000,7.000000],the weight is -2.000000
+[162.000000,115.000000,14.000000,7.000000],the weight is 1.000000
+the factor is 170.000000
+the value of the haar is -0.016005
+Number of the rects is 4,type of haarfeature is 4.
+The bbox is [162.000000,101.000000,14.000000,22.000000]
+[162.000000,101.000000,7.000000,11.000000],the weight is 1.000000
+[169.000000,112.000000,7.000000,11.000000],the weight is 1.000000
+[162.000000,112.000000,7.000000,11.000000],the weight is -1.000000
+[169.000000,101.000000,7.000000,11.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is 0.073313
+Number of the rects is 2,type of haarfeature is 5.
+The bbox is [162.000000,101.000000,14.000000,22.000000]
+[162.000000,101.000000,14.000000,22.000000],the weight is 1.000000
+[165.000000,106.000000,7.000000,11.000000],the weight is -4.000000
+the factor is 191.250000
+the value of the haar is 0.126424
+Number of the rects is 2,type of haarfeature is 0.
+The bbox is [172.500000,106.500000,7.000000,11.000000]
+[172.500000,106.500000,7.000000,5.000000],the weight is 1.000000
+[172.500000,112.000000,7.000000,5.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is -0.107767
+Number of the rects is 2,type of haarfeature is 1.
+The bbox is [172.500000,106.500000,7.000000,11.000000]
+[172.500000,106.500000,3.000000,11.000000],the weight is 1.000000
+[176.000000,106.500000,3.000000,11.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is 0.003667
+Number of the rects is 3,type of haarfeature is 2.
+The bbox is [172.500000,106.500000,7.000000,11.000000]
+[172.500000,106.500000,2.000000,11.000000],the weight is 1.000000
+[174.000000,106.500000,2.000000,11.000000],the weight is -2.000000
+[177.000000,106.500000,2.000000,11.000000],the weight is 1.000000
+the factor is 170.000000
+the value of the haar is -0.009626
+Number of the rects is 3,type of haarfeature is 3.
+The bbox is [172.500000,106.500000,7.000000,11.000000]
+[172.500000,106.500000,7.000000,3.000000],the weight is 1.000000
+[172.500000,110.000000,7.000000,3.000000],the weight is -2.000000
+[172.500000,113.000000,7.000000,3.000000],the weight is 1.000000
+the factor is 170.000000
+the value of the haar is -0.009091
+Number of the rects is 4,type of haarfeature is 4.
+The bbox is [172.500000,106.500000,7.000000,11.000000]
+[172.500000,106.500000,3.000000,5.000000],the weight is 1.000000
+[176.000000,112.000000,3.000000,5.000000],the weight is 1.000000
+[172.500000,112.000000,3.000000,5.000000],the weight is -1.000000
+[176.000000,106.500000,3.000000,5.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is -0.013955
+Number of the rects is 2,type of haarfeature is 5.
+The bbox is [172.500000,106.500000,7.000000,11.000000]
+[172.500000,106.500000,7.000000,11.000000],the weight is 1.000000
+[174.000000,109.000000,3.000000,5.000000],the weight is -4.000000
+the factor is 191.250000
+the value of the haar is 0.252135
+Number of the rects is 2,type of haarfeature is 0.
+The bbox is [169.000000,101.000000,14.000000,22.000000]
+[169.000000,101.000000,14.000000,11.000000],the weight is 1.000000
+[169.000000,112.000000,14.000000,11.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is -0.122944
+Number of the rects is 2,type of haarfeature is 1.
+The bbox is [169.000000,101.000000,14.000000,22.000000]
+[169.000000,101.000000,7.000000,22.000000],the weight is 1.000000
+[176.000000,101.000000,7.000000,22.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is -0.127069
+Number of the rects is 3,type of haarfeature is 2.
+The bbox is [169.000000,101.000000,14.000000,22.000000]
+[169.000000,101.000000,4.000000,22.000000],the weight is 1.000000
+[173.000000,101.000000,4.000000,22.000000],the weight is -2.000000
+[178.000000,101.000000,4.000000,22.000000],the weight is 1.000000
+the factor is 170.000000
+the value of the haar is -0.092074
+Number of the rects is 3,type of haarfeature is 3.
+The bbox is [169.000000,101.000000,14.000000,22.000000]
+[169.000000,101.000000,14.000000,7.000000],the weight is 1.000000
+[169.000000,108.000000,14.000000,7.000000],the weight is -2.000000
+[169.000000,115.000000,14.000000,7.000000],the weight is 1.000000
+the factor is 170.000000
+the value of the haar is 0.003858
+Number of the rects is 4,type of haarfeature is 4.
+The bbox is [169.000000,101.000000,14.000000,22.000000]
+[169.000000,101.000000,7.000000,11.000000],the weight is 1.000000
+[176.000000,112.000000,7.000000,11.000000],the weight is 1.000000
+[169.000000,112.000000,7.000000,11.000000],the weight is -1.000000
+[176.000000,101.000000,7.000000,11.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is 0.002954
+Number of the rects is 2,type of haarfeature is 5.
+The bbox is [169.000000,101.000000,14.000000,22.000000]
+[169.000000,101.000000,14.000000,22.000000],the weight is 1.000000
+[172.000000,106.000000,7.000000,11.000000],the weight is -4.000000
+the factor is 191.250000
+the value of the haar is -0.083355
+Number of the rects is 2,type of haarfeature is 0.
+The bbox is [151.500000,117.500000,7.000000,11.000000]
+[151.500000,117.500000,7.000000,5.000000],the weight is 1.000000
+[151.500000,123.000000,7.000000,5.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is -0.192717
+Number of the rects is 2,type of haarfeature is 1.
+The bbox is [151.500000,117.500000,7.000000,11.000000]
+[151.500000,117.500000,3.000000,11.000000],the weight is 1.000000
+[155.000000,117.500000,3.000000,11.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is 0.275834
+Number of the rects is 3,type of haarfeature is 2.
+The bbox is [151.500000,117.500000,7.000000,11.000000]
+[151.500000,117.500000,2.000000,11.000000],the weight is 1.000000
+[153.000000,117.500000,2.000000,11.000000],the weight is -2.000000
+[156.000000,117.500000,2.000000,11.000000],the weight is 1.000000
+the factor is 170.000000
+the value of the haar is -0.053476
+Number of the rects is 3,type of haarfeature is 3.
+The bbox is [151.500000,117.500000,7.000000,11.000000]
+[151.500000,117.500000,7.000000,3.000000],the weight is 1.000000
+[151.500000,121.000000,7.000000,3.000000],the weight is -2.000000
+[151.500000,124.000000,7.000000,3.000000],the weight is 1.000000
+the factor is 170.000000
+the value of the haar is 0.032850
+Number of the rects is 4,type of haarfeature is 4.
+The bbox is [151.500000,117.500000,7.000000,11.000000]
+[151.500000,117.500000,3.000000,5.000000],the weight is 1.000000
+[155.000000,123.000000,3.000000,5.000000],the weight is 1.000000
+[151.500000,123.000000,3.000000,5.000000],the weight is -1.000000
+[155.000000,117.500000,3.000000,5.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is 0.144945
+Number of the rects is 2,type of haarfeature is 5.
+The bbox is [151.500000,117.500000,7.000000,11.000000]
+[151.500000,117.500000,7.000000,11.000000],the weight is 1.000000
+[153.000000,120.000000,3.000000,5.000000],the weight is -4.000000
+the factor is 191.250000
+the value of the haar is 0.176216
+Number of the rects is 2,type of haarfeature is 0.
+The bbox is [148.000000,112.000000,14.000000,22.000000]
+[148.000000,112.000000,14.000000,11.000000],the weight is 1.000000
+[148.000000,123.000000,14.000000,11.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is -0.033308
+Number of the rects is 2,type of haarfeature is 1.
+The bbox is [148.000000,112.000000,14.000000,22.000000]
+[148.000000,112.000000,7.000000,22.000000],the weight is 1.000000
+[155.000000,112.000000,7.000000,22.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is 0.242322
+Number of the rects is 3,type of haarfeature is 2.
+The bbox is [148.000000,112.000000,14.000000,22.000000]
+[148.000000,112.000000,4.000000,22.000000],the weight is 1.000000
+[152.000000,112.000000,4.000000,22.000000],the weight is -2.000000
+[157.000000,112.000000,4.000000,22.000000],the weight is 1.000000
+the factor is 170.000000
+the value of the haar is -0.213789
+Number of the rects is 3,type of haarfeature is 3.
+The bbox is [148.000000,112.000000,14.000000,22.000000]
+[148.000000,112.000000,14.000000,7.000000],the weight is 1.000000
+[148.000000,119.000000,14.000000,7.000000],the weight is -2.000000
+[148.000000,126.000000,14.000000,7.000000],the weight is 1.000000
+the factor is 170.000000
+the value of the haar is -0.040298
+Number of the rects is 4,type of haarfeature is 4.
+The bbox is [148.000000,112.000000,14.000000,22.000000]
+[148.000000,112.000000,7.000000,11.000000],the weight is 1.000000
+[155.000000,123.000000,7.000000,11.000000],the weight is 1.000000
+[148.000000,123.000000,7.000000,11.000000],the weight is -1.000000
+[155.000000,112.000000,7.000000,11.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is -0.112299
+Number of the rects is 2,type of haarfeature is 5.
+The bbox is [148.000000,112.000000,14.000000,22.000000]
+[148.000000,112.000000,14.000000,22.000000],the weight is 1.000000
+[151.000000,117.000000,7.000000,11.000000],the weight is -4.000000
+the factor is 191.250000
+the value of the haar is -0.062032
+Number of the rects is 2,type of haarfeature is 0.
+The bbox is [158.500000,117.500000,7.000000,11.000000]
+[158.500000,117.500000,7.000000,5.000000],the weight is 1.000000
+[158.500000,123.000000,7.000000,5.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is 0.062949
+Number of the rects is 2,type of haarfeature is 1.
+The bbox is [158.500000,117.500000,7.000000,11.000000]
+[158.500000,117.500000,3.000000,11.000000],the weight is 1.000000
+[162.000000,117.500000,3.000000,11.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is 0.004074
+Number of the rects is 3,type of haarfeature is 2.
+The bbox is [158.500000,117.500000,7.000000,11.000000]
+[158.500000,117.500000,2.000000,11.000000],the weight is 1.000000
+[160.000000,117.500000,2.000000,11.000000],the weight is -2.000000
+[163.000000,117.500000,2.000000,11.000000],the weight is 1.000000
+the factor is 170.000000
+the value of the haar is -0.057907
+Number of the rects is 3,type of haarfeature is 3.
+The bbox is [158.500000,117.500000,7.000000,11.000000]
+[158.500000,117.500000,7.000000,3.000000],the weight is 1.000000
+[158.500000,121.000000,7.000000,3.000000],the weight is -2.000000
+[158.500000,124.000000,7.000000,3.000000],the weight is 1.000000
+the factor is 170.000000
+the value of the haar is -0.032697
+Number of the rects is 4,type of haarfeature is 4.
+The bbox is [158.500000,117.500000,7.000000,11.000000]
+[158.500000,117.500000,3.000000,5.000000],the weight is 1.000000
+[162.000000,123.000000,3.000000,5.000000],the weight is 1.000000
+[158.500000,123.000000,3.000000,5.000000],the weight is -1.000000
+[162.000000,117.500000,3.000000,5.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is 0.149020
+Number of the rects is 2,type of haarfeature is 5.
+The bbox is [158.500000,117.500000,7.000000,11.000000]
+[158.500000,117.500000,7.000000,11.000000],the weight is 1.000000
+[160.000000,120.000000,3.000000,5.000000],the weight is -4.000000
+the factor is 191.250000
+the value of the haar is 0.073950
+Number of the rects is 2,type of haarfeature is 0.
+The bbox is [155.000000,112.000000,14.000000,22.000000]
+[155.000000,112.000000,14.000000,11.000000],the weight is 1.000000
+[155.000000,123.000000,14.000000,11.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is 0.000025
+Number of the rects is 2,type of haarfeature is 1.
+The bbox is [155.000000,112.000000,14.000000,22.000000]
+[155.000000,112.000000,7.000000,22.000000],the weight is 1.000000
+[162.000000,112.000000,7.000000,22.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is 0.051108
+Number of the rects is 3,type of haarfeature is 2.
+The bbox is [155.000000,112.000000,14.000000,22.000000]
+[155.000000,112.000000,4.000000,22.000000],the weight is 1.000000
+[159.000000,112.000000,4.000000,22.000000],the weight is -2.000000
+[164.000000,112.000000,4.000000,22.000000],the weight is 1.000000
+the factor is 170.000000
+the value of the haar is -0.052788
+Number of the rects is 3,type of haarfeature is 3.
+The bbox is [155.000000,112.000000,14.000000,22.000000]
+[155.000000,112.000000,14.000000,7.000000],the weight is 1.000000
+[155.000000,119.000000,14.000000,7.000000],the weight is -2.000000
+[155.000000,126.000000,14.000000,7.000000],the weight is 1.000000
+the factor is 170.000000
+the value of the haar is 0.128801
+Number of the rects is 4,type of haarfeature is 4.
+The bbox is [155.000000,112.000000,14.000000,22.000000]
+[155.000000,112.000000,7.000000,11.000000],the weight is 1.000000
+[162.000000,123.000000,7.000000,11.000000],the weight is 1.000000
+[155.000000,123.000000,7.000000,11.000000],the weight is -1.000000
+[162.000000,112.000000,7.000000,11.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is 0.078966
+Number of the rects is 2,type of haarfeature is 5.
+The bbox is [155.000000,112.000000,14.000000,22.000000]
+[155.000000,112.000000,14.000000,22.000000],the weight is 1.000000
+[158.000000,117.000000,7.000000,11.000000],the weight is -4.000000
+the factor is 191.250000
+the value of the haar is 0.190663
+Number of the rects is 2,type of haarfeature is 0.
+The bbox is [165.500000,117.500000,7.000000,11.000000]
+[165.500000,117.500000,7.000000,5.000000],the weight is 1.000000
+[165.500000,123.000000,7.000000,5.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is -0.212172
+Number of the rects is 2,type of haarfeature is 1.
+The bbox is [165.500000,117.500000,7.000000,11.000000]
+[165.500000,117.500000,3.000000,11.000000],the weight is 1.000000
+[169.000000,117.500000,3.000000,11.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is -0.385129
+Number of the rects is 3,type of haarfeature is 2.
+The bbox is [165.500000,117.500000,7.000000,11.000000]
+[165.500000,117.500000,2.000000,11.000000],the weight is 1.000000
+[167.000000,117.500000,2.000000,11.000000],the weight is -2.000000
+[170.000000,117.500000,2.000000,11.000000],the weight is 1.000000
+the factor is 170.000000
+the value of the haar is -0.023224
+Number of the rects is 3,type of haarfeature is 3.
+The bbox is [165.500000,117.500000,7.000000,11.000000]
+[165.500000,117.500000,7.000000,3.000000],the weight is 1.000000
+[165.500000,121.000000,7.000000,3.000000],the weight is -2.000000
+[165.500000,124.000000,7.000000,3.000000],the weight is 1.000000
+the factor is 170.000000
+the value of the haar is 0.082811
+Number of the rects is 4,type of haarfeature is 4.
+The bbox is [165.500000,117.500000,7.000000,11.000000]
+[165.500000,117.500000,3.000000,5.000000],the weight is 1.000000
+[169.000000,123.000000,3.000000,5.000000],the weight is 1.000000
+[165.500000,123.000000,3.000000,5.000000],the weight is -1.000000
+[169.000000,117.500000,3.000000,5.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is 0.029845
+Number of the rects is 2,type of haarfeature is 5.
+The bbox is [165.500000,117.500000,7.000000,11.000000]
+[165.500000,117.500000,7.000000,11.000000],the weight is 1.000000
+[167.000000,120.000000,3.000000,5.000000],the weight is -4.000000
+the factor is 191.250000
+the value of the haar is 0.179204
+Number of the rects is 2,type of haarfeature is 0.
+The bbox is [162.000000,112.000000,14.000000,22.000000]
+[162.000000,112.000000,14.000000,11.000000],the weight is 1.000000
+[162.000000,123.000000,14.000000,11.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is -0.039649
+Number of the rects is 2,type of haarfeature is 1.
+The bbox is [162.000000,112.000000,14.000000,22.000000]
+[162.000000,112.000000,7.000000,22.000000],the weight is 1.000000
+[169.000000,112.000000,7.000000,22.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is -0.376700
+Number of the rects is 3,type of haarfeature is 2.
+The bbox is [162.000000,112.000000,14.000000,22.000000]
+[162.000000,112.000000,4.000000,22.000000],the weight is 1.000000
+[166.000000,112.000000,4.000000,22.000000],the weight is -2.000000
+[171.000000,112.000000,4.000000,22.000000],the weight is 1.000000
+the factor is 170.000000
+the value of the haar is 0.121906
+Number of the rects is 3,type of haarfeature is 3.
+The bbox is [162.000000,112.000000,14.000000,22.000000]
+[162.000000,112.000000,14.000000,7.000000],the weight is 1.000000
+[162.000000,119.000000,14.000000,7.000000],the weight is -2.000000
+[162.000000,126.000000,14.000000,7.000000],the weight is 1.000000
+the factor is 170.000000
+the value of the haar is 0.080252
+Number of the rects is 4,type of haarfeature is 4.
+The bbox is [162.000000,112.000000,14.000000,22.000000]
+[162.000000,112.000000,7.000000,11.000000],the weight is 1.000000
+[169.000000,123.000000,7.000000,11.000000],the weight is 1.000000
+[162.000000,123.000000,7.000000,11.000000],the weight is -1.000000
+[169.000000,112.000000,7.000000,11.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is -0.039292
+Number of the rects is 2,type of haarfeature is 5.
+The bbox is [162.000000,112.000000,14.000000,22.000000]
+[162.000000,112.000000,14.000000,22.000000],the weight is 1.000000
+[165.000000,117.000000,7.000000,11.000000],the weight is -4.000000
+the factor is 191.250000
+the value of the haar is 0.147101
+Number of the rects is 2,type of haarfeature is 0.
+The bbox is [172.500000,117.500000,7.000000,11.000000]
+[172.500000,117.500000,7.000000,5.000000],the weight is 1.000000
+[172.500000,123.000000,7.000000,5.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is 0.121518
+Number of the rects is 2,type of haarfeature is 1.
+The bbox is [172.500000,117.500000,7.000000,11.000000]
+[172.500000,117.500000,3.000000,11.000000],the weight is 1.000000
+[176.000000,117.500000,3.000000,11.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is -0.008454
+Number of the rects is 3,type of haarfeature is 2.
+The bbox is [172.500000,117.500000,7.000000,11.000000]
+[172.500000,117.500000,2.000000,11.000000],the weight is 1.000000
+[174.000000,117.500000,2.000000,11.000000],the weight is -2.000000
+[177.000000,117.500000,2.000000,11.000000],the weight is 1.000000
+the factor is 170.000000
+the value of the haar is 0.008938
+Number of the rects is 3,type of haarfeature is 3.
+The bbox is [172.500000,117.500000,7.000000,11.000000]
+[172.500000,117.500000,7.000000,3.000000],the weight is 1.000000
+[172.500000,121.000000,7.000000,3.000000],the weight is -2.000000
+[172.500000,124.000000,7.000000,3.000000],the weight is 1.000000
+the factor is 170.000000
+the value of the haar is -0.009320
+Number of the rects is 4,type of haarfeature is 4.
+The bbox is [172.500000,117.500000,7.000000,11.000000]
+[172.500000,117.500000,3.000000,5.000000],the weight is 1.000000
+[176.000000,123.000000,3.000000,5.000000],the weight is 1.000000
+[172.500000,123.000000,3.000000,5.000000],the weight is -1.000000
+[176.000000,117.500000,3.000000,5.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is 0.002445
+Number of the rects is 2,type of haarfeature is 5.
+The bbox is [172.500000,117.500000,7.000000,11.000000]
+[172.500000,117.500000,7.000000,11.000000],the weight is 1.000000
+[174.000000,120.000000,3.000000,5.000000],the weight is -4.000000
+the factor is 191.250000
+the value of the haar is 0.235362
+Number of the rects is 2,type of haarfeature is 0.
+The bbox is [169.000000,112.000000,14.000000,22.000000]
+[169.000000,112.000000,14.000000,11.000000],the weight is 1.000000
+[169.000000,123.000000,14.000000,11.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is 0.035014
+Number of the rects is 2,type of haarfeature is 1.
+The bbox is [169.000000,112.000000,14.000000,22.000000]
+[169.000000,112.000000,7.000000,22.000000],the weight is 1.000000
+[176.000000,112.000000,7.000000,22.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is -0.094652
+Number of the rects is 3,type of haarfeature is 2.
+The bbox is [169.000000,112.000000,14.000000,22.000000]
+[169.000000,112.000000,4.000000,22.000000],the weight is 1.000000
+[173.000000,112.000000,4.000000,22.000000],the weight is -2.000000
+[178.000000,112.000000,4.000000,22.000000],the weight is 1.000000
+the factor is 170.000000
+the value of the haar is -0.035791
+Number of the rects is 3,type of haarfeature is 3.
+The bbox is [169.000000,112.000000,14.000000,22.000000]
+[169.000000,112.000000,14.000000,7.000000],the weight is 1.000000
+[169.000000,119.000000,14.000000,7.000000],the weight is -2.000000
+[169.000000,126.000000,14.000000,7.000000],the weight is 1.000000
+the factor is 170.000000
+the value of the haar is 0.011364
+Number of the rects is 4,type of haarfeature is 4.
+The bbox is [169.000000,112.000000,14.000000,22.000000]
+[169.000000,112.000000,7.000000,11.000000],the weight is 1.000000
+[176.000000,123.000000,7.000000,11.000000],the weight is 1.000000
+[169.000000,123.000000,7.000000,11.000000],the weight is -1.000000
+[176.000000,112.000000,7.000000,11.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is -0.035371
+Number of the rects is 2,type of haarfeature is 5.
+The bbox is [169.000000,112.000000,14.000000,22.000000]
+[169.000000,112.000000,14.000000,22.000000],the weight is 1.000000
+[172.000000,117.000000,7.000000,11.000000],the weight is -4.000000
+the factor is 191.250000
+the value of the haar is -0.048977
+Number of the rects is 2,type of haarfeature is 0.
+The bbox is [151.500000,128.500000,7.000000,11.000000]
+[151.500000,128.500000,7.000000,5.000000],the weight is 1.000000
+[151.500000,134.000000,7.000000,5.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is -0.125999
+Number of the rects is 2,type of haarfeature is 1.
+The bbox is [151.500000,128.500000,7.000000,11.000000]
+[151.500000,128.500000,3.000000,11.000000],the weight is 1.000000
+[155.000000,128.500000,3.000000,11.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is 0.120499
+Number of the rects is 3,type of haarfeature is 2.
+The bbox is [151.500000,128.500000,7.000000,11.000000]
+[151.500000,128.500000,2.000000,11.000000],the weight is 1.000000
+[153.000000,128.500000,2.000000,11.000000],the weight is -2.000000
+[156.000000,128.500000,2.000000,11.000000],the weight is 1.000000
+the factor is 170.000000
+the value of the haar is -0.086020
+Number of the rects is 3,type of haarfeature is 3.
+The bbox is [151.500000,128.500000,7.000000,11.000000]
+[151.500000,128.500000,7.000000,3.000000],the weight is 1.000000
+[151.500000,132.000000,7.000000,3.000000],the weight is -2.000000
+[151.500000,135.000000,7.000000,3.000000],the weight is 1.000000
+the factor is 170.000000
+the value of the haar is -0.031627
+Number of the rects is 4,type of haarfeature is 4.
+The bbox is [151.500000,128.500000,7.000000,11.000000]
+[151.500000,128.500000,3.000000,5.000000],the weight is 1.000000
+[155.000000,134.000000,3.000000,5.000000],the weight is 1.000000
+[151.500000,134.000000,3.000000,5.000000],the weight is -1.000000
+[155.000000,128.500000,3.000000,5.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is 0.216858
+Number of the rects is 2,type of haarfeature is 5.
+The bbox is [151.500000,128.500000,7.000000,11.000000]
+[151.500000,128.500000,7.000000,11.000000],the weight is 1.000000
+[153.000000,131.000000,3.000000,5.000000],the weight is -4.000000
+the factor is 191.250000
+the value of the haar is 0.183550
+Number of the rects is 2,type of haarfeature is 0.
+The bbox is [148.000000,123.000000,14.000000,22.000000]
+[148.000000,123.000000,14.000000,11.000000],the weight is 1.000000
+[148.000000,134.000000,14.000000,11.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is -0.109116
+Number of the rects is 2,type of haarfeature is 1.
+The bbox is [148.000000,123.000000,14.000000,22.000000]
+[148.000000,123.000000,7.000000,22.000000],the weight is 1.000000
+[155.000000,123.000000,7.000000,22.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is 0.158365
+Number of the rects is 3,type of haarfeature is 2.
+The bbox is [148.000000,123.000000,14.000000,22.000000]
+[148.000000,123.000000,4.000000,22.000000],the weight is 1.000000
+[152.000000,123.000000,4.000000,22.000000],the weight is -2.000000
+[157.000000,123.000000,4.000000,22.000000],the weight is 1.000000
+the factor is 170.000000
+the value of the haar is -0.134320
+Number of the rects is 3,type of haarfeature is 3.
+The bbox is [148.000000,123.000000,14.000000,22.000000]
+[148.000000,123.000000,14.000000,7.000000],the weight is 1.000000
+[148.000000,130.000000,14.000000,7.000000],the weight is -2.000000
+[148.000000,137.000000,14.000000,7.000000],the weight is 1.000000
+the factor is 170.000000
+the value of the haar is 0.029584
+Number of the rects is 4,type of haarfeature is 4.
+The bbox is [148.000000,123.000000,14.000000,22.000000]
+[148.000000,123.000000,7.000000,11.000000],the weight is 1.000000
+[155.000000,134.000000,7.000000,11.000000],the weight is 1.000000
+[148.000000,134.000000,7.000000,11.000000],the weight is -1.000000
+[155.000000,123.000000,7.000000,11.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is 0.196257
+Number of the rects is 2,type of haarfeature is 5.
+The bbox is [148.000000,123.000000,14.000000,22.000000]
+[148.000000,123.000000,14.000000,22.000000],the weight is 1.000000
+[151.000000,128.000000,7.000000,11.000000],the weight is -4.000000
+the factor is 191.250000
+the value of the haar is -0.089857
+Number of the rects is 2,type of haarfeature is 0.
+The bbox is [158.500000,128.500000,7.000000,11.000000]
+[158.500000,128.500000,7.000000,5.000000],the weight is 1.000000
+[158.500000,134.000000,7.000000,5.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is -0.073542
+Number of the rects is 2,type of haarfeature is 1.
+The bbox is [158.500000,128.500000,7.000000,11.000000]
+[158.500000,128.500000,3.000000,11.000000],the weight is 1.000000
+[162.000000,128.500000,3.000000,11.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is -0.106748
+Number of the rects is 3,type of haarfeature is 2.
+The bbox is [158.500000,128.500000,7.000000,11.000000]
+[158.500000,128.500000,2.000000,11.000000],the weight is 1.000000
+[160.000000,128.500000,2.000000,11.000000],the weight is -2.000000
+[163.000000,128.500000,2.000000,11.000000],the weight is 1.000000
+the factor is 170.000000
+the value of the haar is -0.006875
+Number of the rects is 3,type of haarfeature is 3.
+The bbox is [158.500000,128.500000,7.000000,11.000000]
+[158.500000,128.500000,7.000000,3.000000],the weight is 1.000000
+[158.500000,132.000000,7.000000,3.000000],the weight is -2.000000
+[158.500000,135.000000,7.000000,3.000000],the weight is 1.000000
+the factor is 170.000000
+the value of the haar is 0.036516
+Number of the rects is 4,type of haarfeature is 4.
+The bbox is [158.500000,128.500000,7.000000,11.000000]
+[158.500000,128.500000,3.000000,5.000000],the weight is 1.000000
+[162.000000,134.000000,3.000000,5.000000],the weight is 1.000000
+[158.500000,134.000000,3.000000,5.000000],the weight is -1.000000
+[162.000000,128.500000,3.000000,5.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is -0.127935
+Number of the rects is 2,type of haarfeature is 5.
+The bbox is [158.500000,128.500000,7.000000,11.000000]
+[158.500000,128.500000,7.000000,11.000000],the weight is 1.000000
+[160.000000,131.000000,3.000000,5.000000],the weight is -4.000000
+the factor is 191.250000
+the value of the haar is 0.220694
+Number of the rects is 2,type of haarfeature is 0.
+The bbox is [155.000000,123.000000,14.000000,22.000000]
+[155.000000,123.000000,14.000000,11.000000],the weight is 1.000000
+[155.000000,134.000000,14.000000,11.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is -0.172116
+Number of the rects is 2,type of haarfeature is 1.
+The bbox is [155.000000,123.000000,14.000000,22.000000]
+[155.000000,123.000000,7.000000,22.000000],the weight is 1.000000
+[162.000000,123.000000,7.000000,22.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is 0.105399
+Number of the rects is 3,type of haarfeature is 2.
+The bbox is [155.000000,123.000000,14.000000,22.000000]
+[155.000000,123.000000,4.000000,22.000000],the weight is 1.000000
+[159.000000,123.000000,4.000000,22.000000],the weight is -2.000000
+[164.000000,123.000000,4.000000,22.000000],the weight is 1.000000
+the factor is 170.000000
+the value of the haar is -0.039095
+Number of the rects is 3,type of haarfeature is 3.
+The bbox is [155.000000,123.000000,14.000000,22.000000]
+[155.000000,123.000000,14.000000,7.000000],the weight is 1.000000
+[155.000000,130.000000,14.000000,7.000000],the weight is -2.000000
+[155.000000,137.000000,14.000000,7.000000],the weight is 1.000000
+the factor is 170.000000
+the value of the haar is 0.034034
+Number of the rects is 4,type of haarfeature is 4.
+The bbox is [155.000000,123.000000,14.000000,22.000000]
+[155.000000,123.000000,7.000000,11.000000],the weight is 1.000000
+[162.000000,134.000000,7.000000,11.000000],the weight is 1.000000
+[155.000000,134.000000,7.000000,11.000000],the weight is -1.000000
+[162.000000,123.000000,7.000000,11.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is -0.133257
+Number of the rects is 2,type of haarfeature is 5.
+The bbox is [155.000000,123.000000,14.000000,22.000000]
+[155.000000,123.000000,14.000000,22.000000],the weight is 1.000000
+[158.000000,128.000000,7.000000,11.000000],the weight is -4.000000
+the factor is 191.250000
+the value of the haar is -0.024972
+Number of the rects is 2,type of haarfeature is 0.
+The bbox is [165.500000,128.500000,7.000000,11.000000]
+[165.500000,128.500000,7.000000,5.000000],the weight is 1.000000
+[165.500000,134.000000,7.000000,5.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is 0.010695
+Number of the rects is 2,type of haarfeature is 1.
+The bbox is [165.500000,128.500000,7.000000,11.000000]
+[165.500000,128.500000,3.000000,11.000000],the weight is 1.000000
+[169.000000,128.500000,3.000000,11.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is -0.453883
+Number of the rects is 3,type of haarfeature is 2.
+The bbox is [165.500000,128.500000,7.000000,11.000000]
+[165.500000,128.500000,2.000000,11.000000],the weight is 1.000000
+[167.000000,128.500000,2.000000,11.000000],the weight is -2.000000
+[170.000000,128.500000,2.000000,11.000000],the weight is 1.000000
+the factor is 170.000000
+the value of the haar is 0.020321
+Number of the rects is 3,type of haarfeature is 3.
+The bbox is [165.500000,128.500000,7.000000,11.000000]
+[165.500000,128.500000,7.000000,3.000000],the weight is 1.000000
+[165.500000,132.000000,7.000000,3.000000],the weight is -2.000000
+[165.500000,135.000000,7.000000,3.000000],the weight is 1.000000
+the factor is 170.000000
+the value of the haar is 0.043239
+Number of the rects is 4,type of haarfeature is 4.
+The bbox is [165.500000,128.500000,7.000000,11.000000]
+[165.500000,128.500000,3.000000,5.000000],the weight is 1.000000
+[169.000000,134.000000,3.000000,5.000000],the weight is 1.000000
+[165.500000,134.000000,3.000000,5.000000],the weight is -1.000000
+[169.000000,128.500000,3.000000,5.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is 0.019659
+Number of the rects is 2,type of haarfeature is 5.
+The bbox is [165.500000,128.500000,7.000000,11.000000]
+[165.500000,128.500000,7.000000,11.000000],the weight is 1.000000
+[167.000000,131.000000,3.000000,5.000000],the weight is -4.000000
+the factor is 191.250000
+the value of the haar is 0.176691
+Number of the rects is 2,type of haarfeature is 0.
+The bbox is [162.000000,123.000000,14.000000,22.000000]
+[162.000000,123.000000,14.000000,11.000000],the weight is 1.000000
+[162.000000,134.000000,14.000000,11.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is -0.036465
+Number of the rects is 2,type of haarfeature is 1.
+The bbox is [162.000000,123.000000,14.000000,22.000000]
+[162.000000,123.000000,7.000000,22.000000],the weight is 1.000000
+[169.000000,123.000000,7.000000,22.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is -0.335014
+Number of the rects is 3,type of haarfeature is 2.
+The bbox is [162.000000,123.000000,14.000000,22.000000]
+[162.000000,123.000000,4.000000,22.000000],the weight is 1.000000
+[166.000000,123.000000,4.000000,22.000000],the weight is -2.000000
+[171.000000,123.000000,4.000000,22.000000],the weight is 1.000000
+the factor is 170.000000
+the value of the haar is 0.076089
+Number of the rects is 3,type of haarfeature is 3.
+The bbox is [162.000000,123.000000,14.000000,22.000000]
+[162.000000,123.000000,14.000000,7.000000],the weight is 1.000000
+[162.000000,130.000000,14.000000,7.000000],the weight is -2.000000
+[162.000000,137.000000,14.000000,7.000000],the weight is 1.000000
+the factor is 170.000000
+the value of the haar is 0.030061
+Number of the rects is 4,type of haarfeature is 4.
+The bbox is [162.000000,123.000000,14.000000,22.000000]
+[162.000000,123.000000,7.000000,11.000000],the weight is 1.000000
+[169.000000,134.000000,7.000000,11.000000],the weight is 1.000000
+[162.000000,134.000000,7.000000,11.000000],the weight is -1.000000
+[169.000000,123.000000,7.000000,11.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is -0.002394
+Number of the rects is 2,type of haarfeature is 5.
+The bbox is [162.000000,123.000000,14.000000,22.000000]
+[162.000000,123.000000,14.000000,22.000000],the weight is 1.000000
+[165.000000,128.000000,7.000000,11.000000],the weight is -4.000000
+the factor is 191.250000
+the value of the haar is 0.101757
+Number of the rects is 2,type of haarfeature is 0.
+The bbox is [172.500000,128.500000,7.000000,11.000000]
+[172.500000,128.500000,7.000000,5.000000],the weight is 1.000000
+[172.500000,134.000000,7.000000,5.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is -0.009778
+Number of the rects is 2,type of haarfeature is 1.
+The bbox is [172.500000,128.500000,7.000000,11.000000]
+[172.500000,128.500000,3.000000,11.000000],the weight is 1.000000
+[176.000000,128.500000,3.000000,11.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is -0.058161
+Number of the rects is 3,type of haarfeature is 2.
+The bbox is [172.500000,128.500000,7.000000,11.000000]
+[172.500000,128.500000,2.000000,11.000000],the weight is 1.000000
+[174.000000,128.500000,2.000000,11.000000],the weight is -2.000000
+[177.000000,128.500000,2.000000,11.000000],the weight is 1.000000
+the factor is 170.000000
+the value of the haar is 0.028419
+Number of the rects is 3,type of haarfeature is 3.
+The bbox is [172.500000,128.500000,7.000000,11.000000]
+[172.500000,128.500000,7.000000,3.000000],the weight is 1.000000
+[172.500000,132.000000,7.000000,3.000000],the weight is -2.000000
+[172.500000,135.000000,7.000000,3.000000],the weight is 1.000000
+the factor is 170.000000
+the value of the haar is 0.073568
+Number of the rects is 4,type of haarfeature is 4.
+The bbox is [172.500000,128.500000,7.000000,11.000000]
+[172.500000,128.500000,3.000000,5.000000],the weight is 1.000000
+[176.000000,134.000000,3.000000,5.000000],the weight is 1.000000
+[172.500000,134.000000,3.000000,5.000000],the weight is -1.000000
+[176.000000,128.500000,3.000000,5.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is -0.075681
+Number of the rects is 2,type of haarfeature is 5.
+The bbox is [172.500000,128.500000,7.000000,11.000000]
+[172.500000,128.500000,7.000000,11.000000],the weight is 1.000000
+[174.000000,131.000000,3.000000,5.000000],the weight is -4.000000
+the factor is 191.250000
+the value of the haar is 0.310806
+Number of the rects is 2,type of haarfeature is 0.
+The bbox is [169.000000,123.000000,14.000000,22.000000]
+[169.000000,123.000000,14.000000,11.000000],the weight is 1.000000
+[169.000000,134.000000,14.000000,11.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is -0.022587
+Number of the rects is 2,type of haarfeature is 1.
+The bbox is [169.000000,123.000000,14.000000,22.000000]
+[169.000000,123.000000,7.000000,22.000000],the weight is 1.000000
+[176.000000,123.000000,7.000000,22.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is -0.047797
+Number of the rects is 3,type of haarfeature is 2.
+The bbox is [169.000000,123.000000,14.000000,22.000000]
+[169.000000,123.000000,4.000000,22.000000],the weight is 1.000000
+[173.000000,123.000000,4.000000,22.000000],the weight is -2.000000
+[178.000000,123.000000,4.000000,22.000000],the weight is 1.000000
+the factor is 170.000000
+the value of the haar is 0.021734
+Number of the rects is 3,type of haarfeature is 3.
+The bbox is [169.000000,123.000000,14.000000,22.000000]
+[169.000000,123.000000,14.000000,7.000000],the weight is 1.000000
+[169.000000,130.000000,14.000000,7.000000],the weight is -2.000000
+[169.000000,137.000000,14.000000,7.000000],the weight is 1.000000
+the factor is 170.000000
+the value of the haar is 0.001662
+Number of the rects is 4,type of haarfeature is 4.
+The bbox is [169.000000,123.000000,14.000000,22.000000]
+[169.000000,123.000000,7.000000,11.000000],the weight is 1.000000
+[176.000000,134.000000,7.000000,11.000000],the weight is 1.000000
+[169.000000,134.000000,7.000000,11.000000],the weight is -1.000000
+[176.000000,123.000000,7.000000,11.000000],the weight is -1.000000
+the factor is 127.500000
+the value of the haar is -0.011485
+Number of the rects is 2,type of haarfeature is 5.
+The bbox is [169.000000,123.000000,14.000000,22.000000]
+[169.000000,123.000000,14.000000,22.000000],the weight is 1.000000
+[172.000000,128.000000,7.000000,11.000000],the weight is -4.000000
+the factor is 191.250000
+the value of the haar is 0.017774
