@@ -41,10 +41,29 @@ class Rect:
     def __str__(self):
         return '[%f %f %f %f]'% (self.x_min,self.y_min,self.width,self.height)
 
+    def Overlap(self, new_rect):
+        top_left_x = max(self.x_min, new_rect.x_min)
+        top_left_y = max(self.y_min, new_rect.y_min)
+        bottom_right_x = min(self.x_max, new_rect.x_max)
+        bottom_right_y = min(self.y_max, new_rect.y_max)
+
+        if top_left_x >= bottom_right_x or top_left_y >= bottom_right_y:
+            return 0
+        else:
+            overlap_area = (bottom_right_x-top_left_x)*(bottom_right_y-top_left_y)
+            total_area = self.Area()+new_rect.Area()-overlap_area
+            overlap_rate = float(overlap_area)/total_area
+
+        return overlap_rate
+
+    def Rect2Str(self):
+        return '[%f,%f,%f,%f]' % (self.x_min, self.y_min, self.width, self.height)
+
 if __name__ == '__main__':
-    rect1 = Rect(2,4,5,8)
+    rect1 = Rect(2, 4, 5, 8)
+    rect2 = Rect(2, 4, 7, 8)
     print rect1
-    rect1.SetXMin(1)
     print rect1
     print rect1.TopLeft()
     print rect1.BottomRight()
+    print rect1.Overlap(rect2)

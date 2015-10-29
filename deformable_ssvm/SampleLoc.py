@@ -1,7 +1,8 @@
 import numpy
 import ScoreRect
 
-def PixelSample(centerLoc,radius=10,halfsample = False):
+
+def PixelSample(centerLoc, radius=10, halfsample = False):
     samples = []
 
     oriX = centerLoc.x_min
@@ -20,7 +21,7 @@ def PixelSample(centerLoc,radius=10,halfsample = False):
             if halfsample and (ix%2 != 0 or iy%2 != 0):
                 continue
             overlap = CalOverlap(centerLoc,ix,iy)
-            tempSampleRect = ScoreRect.ScoreRect(oriX+ix,oriY+iy,oriWidth,oriHeight,overlap)
+            tempSampleRect = ScoreRect.ScoreRect(oriX+ix, oriY+iy, oriWidth, oriHeight, overlap)
 
             samples.append(tempSampleRect)
 
@@ -43,8 +44,8 @@ def RadialSample(centerLoc,nr,nt,sampleRadius = 20):
             phase = (ir%2)*tstep/2
             dx = ir*rstep*numpy.cos(it*tstep+phase)
             dy = ir*rstep*numpy.sin(it*tstep+phase)
-            overlap = CalOverlap(centerLoc,dx,dy)
-            tempSampleRect = ScoreRect.ScoreRect(int(oriX+dx+0.5),int(oriY+dy+0.5),oriWidth,oriHeight,overlap) 
+            overlap = CalOverlap(centerLoc, dx, dy)
+            tempSampleRect = ScoreRect.ScoreRect(int(oriX+dx+0.5), int(oriY+dy+0.5), oriWidth, oriHeight, overlap)
             samples.append(tempSampleRect)
 
     return samples

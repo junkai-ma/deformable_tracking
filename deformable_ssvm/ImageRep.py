@@ -4,6 +4,7 @@ import numpy
 import PARAMETER
 import ObjectParts
 
+
 class ImageRep:
     def __init__(self,image):
         height,width,channels = image.shape

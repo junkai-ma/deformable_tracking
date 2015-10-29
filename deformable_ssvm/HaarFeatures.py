@@ -2,6 +2,7 @@ import HaarRect
 import Rect
 import numpy
 
+
 class HaarFeatures:
     def __init__(self,repImage,bbox):
         self.featureCount = 192

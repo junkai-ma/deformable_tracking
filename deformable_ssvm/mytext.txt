@@ -42,7 +42,8 @@ feature = haar gaussian 0.2
 #feature = raw gaussian 0.1
 #feature = histogram intersection
 
-bbox = [224,40,291,182]
+#bbox = [224,40,291,182]
+bbox = [225,54,293,167]
 
 #the number of frames in the sequence
 startFrame = 46
