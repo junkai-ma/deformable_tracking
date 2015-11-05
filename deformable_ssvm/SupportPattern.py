@@ -6,6 +6,7 @@ class SupportPattern:
         self.y_candidates = []
         self.AddYCandidate(sample_list)
         self.feature_vectors = self.GetRectFeature(image_rep)
+        # if use part-based model, y is a list
         self.y_best = y
         self.refCount = 0
 

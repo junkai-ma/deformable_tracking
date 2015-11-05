@@ -18,8 +18,8 @@ class LaRank:
     def Evaluate(self, vector_x):
         g = 0.0
         for each_item in self.svs:
-            g += each_item.beta * Kernel.LinearKernel_CalPro(vector_x,
-                                                             self.sps[each_item.pattern_index].feature_vectors[each_item.y_index])
+            g += each_item.beta * Kernel.GaussianKernel_CalPro(vector_x,
+                                                               self.sps[each_item.pattern_index].feature_vectors[each_item.y_index])
 
         return g
 
@@ -33,10 +33,10 @@ class LaRank:
         current_feature = self.sps[pattern_index].feature_vectors[y]
         for i in range(ind):
             temp_feature = self.sps[self.svs[i].pattern_index].feature_vectors[self.svs[i].y_index]
-            self.m_K[(i, ind)] = Kernel.LinearKernel_CalPro(temp_feature, current_feature)
+            self.m_K[(i, ind)] = Kernel.GaussianKernel_CalPro(temp_feature, current_feature)
             self.m_K[(ind, i)] = self.m_K[(i, ind)]
 
-        self.m_K[(ind, ind)] = Kernel.LinearKernel_CalNorm(current_feature)
+        self.m_K[(ind, ind)] = Kernel.GaussianKernel_CalNorm(current_feature)
 
         print 'add a new vector,pattern is %d, the support vector is %d' % (pattern_index, ind)
         return ind
@@ -132,7 +132,7 @@ class LaRank:
                 delta_y = 1
             else:
                 delta_y = 0
-            l = min(lu, self.m_C * delta_y - p_vector.beta)
+            l = max(0, min(lu, self.m_C * delta_y - p_vector.beta))
 
             p_vector.beta += l
             n_vector.beta -= l
@@ -265,8 +265,8 @@ class LaRank:
             score = 0.0
             for each_vector in self.svs:
                 sp = self.sps[each_vector.pattern_index]
-                score += each_vector.beta*Kernel.LinearKernel_CalPro(sp.feature_vectors[each_vector.y_index],
-                                                                     each_sample)
+                score += each_vector.beta*Kernel.GaussianKernel_CalPro(sp.feature_vectors[each_vector.y_index],
+                                                                       each_sample)
 
             scores_list.append(score)
 

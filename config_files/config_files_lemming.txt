@@ -5,7 +5,7 @@ quietMode = False
 debugMode = True
 
 # base path for video sequences.
-sequencePath = E:\track_dataset\TLD\10_panda\{:05d}.jpg
+sequencePath = E:\track_dataset\imgs\{:05d}.jpg
 
 # path for output results file.
 # comment this out to disable output.
@@ -17,8 +17,8 @@ sequencePath = E:\track_dataset\TLD\10_panda\{:05d}.jpg
 
 # frame size for use during tracking.
 # the input image will be scaled to this size.
-frameWidth = 312
-frameHeight = 233
+frameWidth = 320
+frameHeight = 240
 
 # seed for random number generator.
 seed = 0
@@ -43,8 +43,8 @@ feature = haar gaussian 0.2
 #feature = histogram intersection
 
 #bbox = [224,40,291,182]
-bbox = [58,100,85,122]
+bbox = [225,54,293,167]
 
 #the number of frames in the sequence
-startFrame = 1
-endFrame = 77
+startFrame = 46
+endFrame = 270

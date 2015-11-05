@@ -48,6 +48,7 @@ targetRect = Rect.Rect(targetRegion[0], targetRegion[1],
 targetHaar = HaarFeatures.HaarFeatures(imageRep, targetRect)
 targetFeature = targetHaar.GetFeatureVec() 
 cv2.rectangle(img, (targetRegion[0], targetRegion[1]), (targetRegion[2], targetRegion[3]), (0, 255, 0))
+cv2.namedWindow('img')
 cv2.imshow('img', img)
 cv2.waitKey(0)
 
@@ -89,13 +90,16 @@ for num in range(startFrame, endFrame):
     print 'the has %d patterns.\n' % len(leaner.sps)
     print 'the has %d vectors.\n' % len(leaner.svs)
 
-    cv2.rectangle(img,(targetRect.x_min,targetRect.y_min),(targetRect.x_max,targetRect.y_max),(0,255,0))
+    cv2.rectangle(img, (targetRect.x_min, targetRect.y_min), (targetRect.x_max, targetRect.y_max), (0, 255, 0))
 
     cv2.imshow('img', img)
     cv2.waitKey(100)
 
     output_file.write(targetRect.Rect2Str())
     output_file.write('\n')
+
+    if num == 55:
+        print 'pause'
     """
     # below is the tracking algorithm do not use the structure svm
     samples = SampleLoc.RadialSample(targetRect, 10, 8, 30)
