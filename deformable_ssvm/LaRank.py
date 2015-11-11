@@ -6,7 +6,7 @@ import random
 
 
 class LaRank:
-    def __init__(self, svBudgetSize=200):
+    def __init__(self, num, svBudgetSize=200):
         self.sps = []
         self.svs = []
         sv_max = svBudgetSize+2
@@ -14,13 +14,18 @@ class LaRank:
         self.sv_budget_size = svBudgetSize
         self.MAX_VALUE = 1000.0
         self.m_C = 100.0
+        self.parts_num = num
 
-    def Evaluate(self, vector_x):
+    def Evaluate(self, vector_feature_list):
+        # the parameter should be a list that indicate the index of each part in support pattern
         g = 0.0
         for each_item in self.svs:
-            g += each_item.beta * Kernel.GaussianKernel_CalPro(vector_x,
-                                                               self.sps[each_item.pattern_index].feature_vectors[each_item.y_index])
-
+            kernel_value = 0.0
+            support_pattern = self.sps[each_item.pattern_index]
+            for (i, each_index) in enumerate(each_item.y_index):
+                kernel_value += Kernel.GaussianKernel_CalPro(vector_feature_list[i],
+                                                             support_pattern.feature_vectors[i][each_index])
+            g += each_item.beta * kernel_value
         return g
 
     def AddSupportVector(self, pattern_index, y, g):
@@ -30,16 +35,33 @@ class LaRank:
         self.sps[pattern_index].AddRef()
 
         # update the kernel matrix m_K
-        current_feature = self.sps[pattern_index].feature_vectors[y]
+        current_feature = self.sps[pattern_index].GetFeatureGroup(y)
         for i in range(ind):
-            temp_feature = self.sps[self.svs[i].pattern_index].feature_vectors[self.svs[i].y_index]
-            self.m_K[(i, ind)] = Kernel.GaussianKernel_CalPro(temp_feature, current_feature)
+            temp_feature = self.sps[self.svs[i].pattern_index].GetFeatureGroup(self.svs[i].y_index)
+            self.m_K[(i, ind)] = self.CalTwoFeatureKernel(temp_feature, current_feature)
             self.m_K[(ind, i)] = self.m_K[(i, ind)]
 
-        self.m_K[(ind, ind)] = Kernel.GaussianKernel_CalNorm(current_feature)
+        self.m_K[(ind, ind)] = self.CalOneFeatureNorm(current_feature)
 
         print 'add a new vector,pattern is %d, the support vector is %d' % (pattern_index, ind)
         return ind
+
+    def CalTwoFeatureKernel(self, feature_list1, feature_list2):
+        if len(feature_list1) != len(feature_list2):
+            # there should be a 'try' statement
+            return
+
+        res = 0.0
+        for i in range(len(feature_list2)):
+            res += Kernel.GaussianKernel_CalPro(feature_list1[i], feature_list2[i])
+
+        return res
+
+    def CalOneFeatureNorm(self, feature_list):
+        res = 0.0
+        for i in range(len(feature_list)):
+            res += Kernel.GaussianKernel_CalNorm(feature_list[i])
+        return res
 
     def Update(self, sample_list, image, y):
         new_support_pattern = SupportPattern.SupportPattern(sample_list, image, y)
@@ -56,7 +78,7 @@ class LaRank:
     def ProcessNew(self, ind):
         print 'ProcessNew'
         p_index = self.AddSupportVector(ind, self.sps[ind].y_best,
-                                        self.Evaluate(self.sps[ind].feature_vectors[self.sps[ind].y_best]))
+                                        self.Evaluate(self.sps[ind].GetFeatureGroup(self.sps[ind].y_best)))
         ind_grad_pair = self.MinGradient(ind)
         n_index = self.AddSupportVector(ind, ind_grad_pair['index'], ind_grad_pair['gradient'])
         print 'process a new pattern %d,p vector is %d, n vector is %d' % (ind, p_index, n_index)
@@ -81,8 +103,9 @@ class LaRank:
                         temp_j = j
                         break
 
-                val = vector.beta * vector.beta * \
-                      (self.m_K[temp_i, temp_i] + self.m_K[temp_j, temp_j] - 2 * self.m_K[temp_i, temp_j])
+                val = vector.beta * vector.beta * (self.m_K[temp_i, temp_i] +
+                                                   self.m_K[temp_j, temp_j] -
+                                                   2 * self.m_K[temp_i, temp_j])
 
                 if val < min_value:
                     p_index = temp_j
@@ -99,18 +122,25 @@ class LaRank:
 
         for vector in self.svs:
             this_ps = self.sps[vector.pattern_index]
-            vector.gradient = - self.Loss(this_ps.y_candidates[vector.y_index], this_ps.y_candidates[this_ps.y_best]) - \
-                              self.Evaluate(self.sps[vector.pattern_index].feature_vectors[vector.y_index])
+            vector.gradient = - self.Loss(this_ps.y_candidates[vector.y_index], this_ps.y_candidates[this_ps.y_best]) \
+                              - self.Evaluate(self.sps[vector.pattern_index].feature_vectors[vector.y_index])
 
     def MinGradient(self, ind):
-        pair = {'index': -1, 'gradient': 100.0}
+        pair = {'index': [], 'gradient': 0.0}
         current_sp = self.sps[ind]
-        for (i, each_item) in enumerate(current_sp.y_candidates):
-            grad = -self.Loss(each_item, current_sp.y_candidates[current_sp.y_best]) - \
-                   self.Evaluate(current_sp.feature_vectors[i])
-            if grad < pair['gradient']:
-                pair['gradient'] = grad
-                pair['index'] = i
+        for i in range(self.parts_num):
+            sep_gradient = 100.0
+            sep_index = -1
+            for (j, each_item) in enumerate(current_sp.y_candidates[i]):
+                grad = -self.Loss(each_item, current_sp.y_candidates[i][current_sp.y_best[i]]) - \
+                        self.Evaluate(current_sp.feature_vectors[i][j])
+                if grad < sep_gradient:
+                    sep_gradient = grad
+                    sep_index = j
+
+            if sep_index != -1:
+                pair['gradient'] += sep_gradient
+                pair['index'].append(sep_index)
 
         return pair
 
@@ -260,15 +290,17 @@ class LaRank:
             self.Optimize()
 
     def MatchBestCandidate(self, sample_list):
-        scores_list = []
-        for each_sample in sample_list:
-            score = 0.0
-            for each_vector in self.svs:
-                sp = self.sps[each_vector.pattern_index]
-                score += each_vector.beta*Kernel.GaussianKernel_CalPro(sp.feature_vectors[each_vector.y_index],
-                                                                       each_sample)
+        best_index = []
+        for i in range(len(sample_list)):
+            scores_list = []
+            for each_sample in sample_list[i]:
+                score = 0.0
+                for each_vector in self.svs:
+                    sp = self.sps[each_vector.pattern_index]
+                    score += each_vector.beta * Kernel.GaussianKernel_CalPro(sp.feature_vectors[i]
+                                                                             [each_vector.y_index[i]], each_sample)
 
-            scores_list.append(score)
+                scores_list.append(score)
+            best_index.append(numpy.argmax(scores_list))
 
-        max_index = numpy.argmax(scores_list)
-        return max_index
+        return best_index

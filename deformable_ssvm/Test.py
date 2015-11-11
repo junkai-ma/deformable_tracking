@@ -37,6 +37,8 @@ Para = Config.Config('mytext.txt')
 
 print Para.config_paras
 
+num_of_parts = 1
+
 imagePath = Para.config_paras['sequencePath']
 targetRegion = Para.config_paras['initBBox']
 startFrame = Para.config_paras['startFrame']
@@ -52,9 +54,11 @@ cv2.namedWindow('img')
 cv2.imshow('img', img)
 cv2.waitKey(0)
 
-leaner = LaRank.LaRank()
-samples_update = SampleLoc.RadialSample(targetRect, 10, 8, 20)
-leaner.Update(samples_update, imageRep, 0)
+leaner = LaRank.LaRank(num_of_parts)
+samples_update = [SampleLoc.RadialSample(targetRect, 10, 8, 20), ]
+leaner.Update(samples_update, imageRep, [0]*num_of_parts)
+
+targetRect = [targetRect]
 
 output_file = open('result.txt', 'w')
 '''
@@ -74,28 +78,43 @@ for num in range(startFrame, endFrame):
     imageRep = ImageRep.ImageRep(img)
     output_file.write('current frame is the %d th :' % (num))
 
-    samples = SampleLoc.PixelSample(targetRect, 20, False)
-    samples_feature = []
-    for each_rect in samples:
-        candidate = HaarFeatures.HaarFeatures(imageRep, each_rect)
-        samples_feature.append(candidate.GetFeatureVec())
+    samples = []
+    for i in range(num_of_parts):
+        samples.append(SampleLoc.PixelSample(targetRect[i], 20, False))
 
-    best_index = leaner.MatchBestCandidate(samples_feature)
-    targetRect = samples[best_index]
+    samples_feature_group = []
+    for i in range(num_of_parts):
+        samples_feature = []
+        for each_rect in samples[i]:
+            candidate = HaarFeatures.HaarFeatures(imageRep, each_rect)
+            samples_feature.append(candidate.GetFeatureVec())
+        samples_feature_group.append(samples_feature)
 
-    samples_update = SampleLoc.RadialSample(targetRect, 10, 8, 20)
-    leaner.Update(samples_update, imageRep, 0)
+    best_index = leaner.MatchBestCandidate(samples_feature_group)
+
+    targetRect = []
+    for i in range(num_of_parts):
+        targetRect.append(samples[i][best_index[i]])
+
+    samples_update = []
+    for i in range(num_of_parts):
+        samples_update.append(SampleLoc.RadialSample(targetRect[i], 10, 8, 20))
+
+    leaner.Update(samples_update, imageRep, [0]*num_of_parts)
 
     print 'current frame is the %d th\n' % num
     print 'the has %d patterns.\n' % len(leaner.sps)
     print 'the has %d vectors.\n' % len(leaner.svs)
 
-    cv2.rectangle(img, (targetRect.x_min, targetRect.y_min), (targetRect.x_max, targetRect.y_max), (0, 255, 0))
+    for i in range(num_of_parts):
+        cv2.rectangle(img, (targetRect[i].x_min, targetRect[i].y_min), (targetRect[i].x_max, targetRect[i].y_max),
+                      (0, 255, 0))
 
     cv2.imshow('img', img)
     cv2.waitKey(100)
 
-    output_file.write(targetRect.Rect2Str())
+    for i in range(num_of_parts):
+        output_file.write(targetRect[i].Rect2Str())
     output_file.write('\n')
 
     if num == 55:

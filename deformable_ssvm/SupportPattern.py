@@ -5,7 +5,8 @@ class SupportPattern:
     def __init__(self, sample_list, image_rep, y):
         self.y_candidates = []
         self.AddYCandidate(sample_list)
-        self.feature_vectors = self.GetRectFeature(image_rep)
+        self.feature_vectors = []
+        self.GetRectFeature(image_rep)
         # if use part-based model, y is a list
         self.y_best = y
         self.refCount = 0
@@ -15,11 +16,12 @@ class SupportPattern:
         self.y_candidates = sample_list
 
     def GetRectFeature(self, image_rep):
-        features = []
-        for each_item in self.y_candidates:
-            each_haar = HaarFeatures.HaarFeatures(image_rep, each_item)
-            features.append(each_haar.GetFeatureVec())
-        return features
+        for each_list in self.y_candidates:
+            each_part_feature = []
+            for each_item in each_list:
+                each_haar = HaarFeatures.HaarFeatures(image_rep, each_item)
+                each_part_feature.append(each_haar.GetFeatureVec())
+            self.feature_vectors.append(each_part_feature)
 
     def AddRef(self):
         self.refCount += 1
@@ -27,8 +29,10 @@ class SupportPattern:
     def RemoveRef(self):
         self.refCount -= 1
 
-    def SetPVectorIndex(self, ind):
-        self.p_vector_index = ind
+    def GetFeatureGroup(self, part_indexes):
+        if len(part_indexes) == len(self.y_candidates):
+            feature_group = []
+            for (i, each_index) in enumerate(part_indexes):
+                feature_group.append(self.feature_vectors[i][each_index])
 
-    def SetNVectorIndex(self, ind):
-        self.n_vector_index = ind
+            return feature_group
