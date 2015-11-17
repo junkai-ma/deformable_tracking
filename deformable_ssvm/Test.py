@@ -37,7 +37,7 @@ Para = Config.Config('mytext.txt')
 
 print Para.config_paras
 
-num_of_parts = 1
+num_of_parts = Para.config_paras['partsNum']
 
 imagePath = Para.config_paras['sequencePath']
 targetRegion = Para.config_paras['initBBox']
@@ -45,20 +45,31 @@ startFrame = Para.config_paras['startFrame']
 endFrame = Para.config_paras['endFrame']
 img = cv2.imread(imagePath.format(startFrame))
 imageRep = ImageRep.ImageRep(img)
+
+'''
 targetRect = Rect.Rect(targetRegion[0], targetRegion[1],
                        targetRegion[2]-targetRegion[0], targetRegion[3]-targetRegion[1])
 targetHaar = HaarFeatures.HaarFeatures(imageRep, targetRect)
-targetFeature = targetHaar.GetFeatureVec() 
-cv2.rectangle(img, (targetRegion[0], targetRegion[1]), (targetRegion[2], targetRegion[3]), (0, 255, 0))
+targetFeature = targetHaar.GetFeatureVec()
+'''
+targetRect = []
+for each_region in targetRegion:
+    target_temp = Rect.Rect(each_region[0],
+                            each_region[1],
+                            each_region[2] - each_region[0],
+                            each_region[3] - each_region[1])
+    targetRect.append(target_temp)
+    cv2.rectangle(img, (each_region[0], each_region[1]), (each_region[2], each_region[3]), (0, 255, 0))
 cv2.namedWindow('img')
 cv2.imshow('img', img)
 cv2.waitKey(0)
 
 leaner = LaRank.LaRank(num_of_parts)
-samples_update = [SampleLoc.RadialSample(targetRect, 10, 8, 20), ]
-leaner.Update(samples_update, imageRep, [0]*num_of_parts)
+samples_update = []
+for i in range(num_of_parts):
+    samples_update.append(SampleLoc.RadialSample(targetRect[i], 10, 8, 20))
 
-targetRect = [targetRect]
+leaner.Update(samples_update, imageRep, [0]*num_of_parts)
 
 output_file = open('result.txt', 'w')
 '''

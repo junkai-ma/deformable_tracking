@@ -5,7 +5,7 @@ class Config:
         self.config_paras['quietMode'] = False
         self.config_paras['debugMode'] = False
         self.config_paras['sequencePath'] = ''
-        #self.config_paras['sequenceName'] = ''
+        # self.config_paras['sequenceName'] = ''
         self.config_paras['resultsPath'] = ''
         
         self.config_paras['framesWidth'] = 320
@@ -15,6 +15,7 @@ class Config:
         self.config_paras['searchRadius'] = 30
         self.config_paras['svmC'] = 1.0
         self.config_paras['svmBudgetSize'] = 0
+        self.config_paras['partsNum'] = 0
 
         self.config_paras['initBBox'] = []
         self.config_paras['features'] = []
@@ -53,17 +54,27 @@ class Config:
             elif feature[0] == 'svmBudgetSize':
                 self.config_paras['svmBudgetSize'] = feature[2]
             elif feature[0] == 'feature':
-                #print feature
-                temp_feature = {'featureType':feature[2],
-                                'kernalType':feature[3],
-                                'params':[feature[4],]}
+                # print feature
+                temp_feature = {'featureType': feature[2],
+                                'kernalType': feature[3],
+                                'params': [feature[4], ]}
                 self.config_paras['features'].append(temp_feature)
             elif feature[0] == 'bbox':
                 feature[2] = feature[2].lstrip('[')
                 feature[2] = feature[2].rstrip(']')
-                value = feature[2].split(',')
+                value = feature[2].split(';')
                 for item in value:
-                    self.config_paras['initBBox'].append(int(item))
+                    item = item.lstrip('[')
+                    item = item.rstrip(']')
+                    item = item.split(',')
+                    each_rect = []
+                    for each_value in item:
+                        each_rect.append(int(each_value))
+
+                    self.config_paras['initBBox'].append(each_rect)
+
+            elif feature[0] == 'partsNum':
+                self.config_paras['partsNum'] = int(feature[2])
             elif feature[0] == 'startFrame':
                 self.config_paras['startFrame'] = int(feature[2])
             elif feature[0] == 'endFrame':

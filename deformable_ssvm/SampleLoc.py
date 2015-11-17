@@ -62,6 +62,9 @@ def CalOverlap(rect,dx,dy):
             overlapRate = float(overlapArea)/(2*rect.Area()-overlapArea)
         return overlapRate
 
+def RegionSample(root_rect, sample_rect, expand_n, step_n):
+
+
 
 '''
 import Rect
