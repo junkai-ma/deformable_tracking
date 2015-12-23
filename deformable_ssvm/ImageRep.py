@@ -6,8 +6,8 @@ import ObjectParts
 
 
 class ImageRep:
-    def __init__(self,image):
-        height,width,channels = image.shape
+    def __init__(self, image):
+        height, width, channels = image.shape
         
         self.originalImage = image
 
@@ -15,26 +15,26 @@ class ImageRep:
         if channels == 1:
             self.images.append(image.copy())
         elif channels == 3:
-            self.images.append(cv2.cvtColor(image,cv2.COLOR_BGR2GRAY))
+            self.images.append(cv2.cvtColor(image, cv2.COLOR_BGR2GRAY))
 
         self.integralImages = []
         for i in range(len(self.images)):
             self.integralImages.append(cv2.integral(self.images[i]))
                 
-    def Sum(self,rect,channel=0):
-        result = (self.integralImages[channel][rect.y_max,rect.x_max] -
-                  self.integralImages[channel][rect.y_max,rect.x_min] -
-                  self.integralImages[channel][rect.y_min,rect.x_max] +
-                  self.integralImages[channel][rect.y_min,rect.x_min])
+    def Sum(self, rect, channel=0):
+        result = (self.integralImages[channel][rect.y_max, rect.x_max] -
+                  self.integralImages[channel][rect.y_max, rect.x_min] -
+                  self.integralImages[channel][rect.y_min, rect.x_max] +
+                  self.integralImages[channel][rect.y_min, rect.x_min])
 
         return result
 
-    def TargetVisible(self,target):
+    def TargetVisible(self, target):
         img = self.originalImage.copy()
-        cv2.rectangle(img,target.rootLoc.TopLeft(),target.rootLoc.BottomRight(),PARAMETER.GREEN)
+        cv2.rectangle(img, target.rootLoc.TopLeft(), target.rootLoc.BottomRight(), PARAMETER.GREEN)
         for (i,item) in enumerate(target.partsList):
-            cv2.rectangle(img,item.TopLeft(),item.BottomRight(),PARAMETER.COLORLIST[i%PARAMETER.COLORLISTNUM])
-        cv2.imshow('target',img)
+            cv2.rectangle(img, item.TopLeft(), item.BottomRight(), PARAMETER.COLORLIST[i % PARAMETER.COLORLISTNUM])
+        cv2.imshow('target', img)
         cv2.waitKey(0)
     '''
     def Hist(self,rect):

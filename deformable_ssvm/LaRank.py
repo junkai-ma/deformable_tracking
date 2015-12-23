@@ -1,24 +1,28 @@
 import SupportVector
 import SupportPattern
-import numpy
+import numpy as np
 import Kernel
 import random
 
 
 class LaRank:
-    def __init__(self, num, svBudgetSize=200):
+    def __init__(self, num, debug_mode, svBudgetSize=200):
         self.sps = []
         self.svs = []
         sv_max = svBudgetSize+2
-        self.m_K = numpy.ndarray(shape=(sv_max, sv_max), dtype=float)
+        self.m_K = np.ndarray(shape=(sv_max, sv_max), dtype=float)
         self.sv_budget_size = svBudgetSize
         self.MAX_VALUE = 1000.0
         self.m_C = 100.0
         self.parts_num = num
+        self.debug_mode = debug_mode
+        if self.debug_mode:
+            self.debug_inf = ''
 
     def Evaluate(self, vector_feature_list):
         # the parameter should be a list that indicate the index of each part in support pattern
         g = 0.0
+        # calculate the similar function
         for each_item in self.svs:
             kernel_value = 0.0
             support_pattern = self.sps[each_item.pattern_index]
@@ -43,7 +47,6 @@ class LaRank:
 
         self.m_K[(ind, ind)] = self.CalOneFeatureNorm(current_feature)
 
-        print 'add a new vector,pattern is %d, the support vector is %d' % (pattern_index, ind)
         return ind
 
     def CalTwoFeatureKernel(self, feature_list1, feature_list2):
@@ -66,7 +69,6 @@ class LaRank:
     def Update(self, sample_list, image, y):
         new_support_pattern = SupportPattern.SupportPattern(sample_list, image, y)
         self.sps.append(new_support_pattern)
-        print 'add a new pattern %d' % (len(self.sps)-1)
 
         self.ProcessNew(len(self.sps) - 1)
         self.BudgetMaintenance()
@@ -76,21 +78,17 @@ class LaRank:
             self.BudgetMaintenance()
 
     def ProcessNew(self, ind):
-        print 'ProcessNew'
         p_index = self.AddSupportVector(ind, self.sps[ind].y_best,
                                         self.Evaluate(self.sps[ind].GetFeatureGroup(self.sps[ind].y_best)))
         ind_grad_pair = self.MinGradient(ind)
         n_index = self.AddSupportVector(ind, ind_grad_pair['index'], ind_grad_pair['gradient'])
-        print 'process a new pattern %d,p vector is %d, n vector is %d' % (ind, p_index, n_index)
         self.SMOStep(p_index, n_index)
 
     def BudgetMaintenance(self):
-        print 'BudgetMaintenance'
         if self.sv_budget_size < len(self.svs):
             self.BudgetMaintenanceRemove()
 
     def BudgetMaintenanceRemove(self):
-        print 'BudgetMaintenanceRemove'
         min_value = self.MAX_VALUE
         p_index = -1
         n_index = -1
@@ -183,13 +181,11 @@ class LaRank:
         return 1 - rect1.Overlap(rect2)
 
     def RemoveSupportVector(self, ind):
-        print 'RemoveSupportVector'
         # ind :the index of the support vector
         self.sps[self.svs[ind].pattern_index].RemoveRef()
         if self.sps[self.svs[ind].pattern_index].refCount == 0:
             # refCount equals to 0 means this support pattern will not provide support vector any more
             self.sps.pop(self.svs[ind].pattern_index)
-            print 'pop the non-ref pattern %d' % self.svs[ind].pattern_index
         for vector in self.svs:
             if vector.pattern_index > self.svs[ind].pattern_index:
                 vector.pattern_index -= 1
@@ -199,10 +195,8 @@ class LaRank:
             ind = len(self.svs) - 1
 
         self.svs.pop(ind)
-        print 'remove the vector %d' % ind
 
     def SwapSupportVectors(self, ind1, ind2):
-        print 'SwapSupportVector %d and %d' % (ind1, ind2)
         self.svs[ind1], self.svs[ind2] = self.svs[ind2], self.svs[ind1]
 
         temp_row = self.m_K[ind1, :]
@@ -249,7 +243,6 @@ class LaRank:
         if i_n == -1:
             i_n = self.AddSupportVector(ind, ind_grad_pair['index'], ind_grad_pair['gradient'])
 
-        print 'ProcessOld: pattern %d' % ind
         self.SMOStep(i_p, i_n)
 
     def Optimize(self):
@@ -292,15 +285,25 @@ class LaRank:
     def MatchBestCandidate(self, sample_list):
         best_index = []
         for i in range(len(sample_list)):
-            scores_list = []
-            for each_sample in sample_list[i]:
-                score = 0.0
+            # scores_list = []
+            scores_list = np.zeros(len(sample_list[i]))
+            for (j, each_sample) in enumerate(sample_list[i]):
                 for each_vector in self.svs:
                     sp = self.sps[each_vector.pattern_index]
-                    score += each_vector.beta * Kernel.GaussianKernel_CalPro(sp.feature_vectors[i]
-                                                                             [each_vector.y_index[i]], each_sample)
+                    scores_list[j] += each_vector.beta * \
+                                      Kernel.GaussianKernel_CalPro(sp.feature_vectors[i][each_vector.y_index[i]],
+                                                                   each_sample)
 
-                scores_list.append(score)
-            best_index.append(numpy.argmax(scores_list))
+            if self.debug_mode:
+                self.debug_inf += '%f\t' % scores_list.max()
+
+            best_index.append(np.argmax(scores_list))
+
+        if self.debug_mode:
+            self.debug_inf += '\n'
 
         return best_index
+
+    def debug_output(self, file_name):
+        file_name.write(self.debug_inf)
+        self.debug_inf = ''

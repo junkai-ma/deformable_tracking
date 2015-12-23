@@ -10,6 +10,13 @@ class SupportPattern:
         # if use part-based model, y is a list
         self.y_best = y
         self.refCount = 0
+        self.part_location = []
+        root = sample_list[0][y[0]]
+        for i in range(1, len(y)):
+            each_rect = sample_list[i][y[i]]
+            temp_dis = [each_rect[0]-root[0], each_rect[1]-root[1]]
+            self.part_location.append(temp_dis)
+
 
     def AddYCandidate(self, sample_list):
         # in this function the rectangles should be translate by the coordinate of the center rectangle

@@ -2,7 +2,7 @@
 quietMode = False
 
 # debug mode enables additional drawing and visualization.
-debugMode = True
+debug_mode = True
 
 # base path for video sequences.
 sequencePath = E:\track_dataset\TLD\10_panda\{:05d}.jpg
@@ -31,6 +31,9 @@ svmC = 100.0
 # SVM budget size (0 = no budget).
 svmBudgetSize = 100
 
+# deformable weight
+deformable_w = 0.5
+
 # image features to use.
 # format is: feature kernel [kernel-params]
 # where:
@@ -45,8 +48,8 @@ feature = haar gaussian 0.2
 #bbox = [224,40,291,182]
 partsNum = 2
 bbox = [[142,99,159,117];[156,101,167,118]]
-rootBox = []
+rootBox = [142,99,167,118]
 
 #the number of frames in the sequence
 startFrame = 76
-endFrame = 106
+endFrame = 96
