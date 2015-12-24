@@ -45,7 +45,7 @@ if __name__ == '__main__':
     import Kernel
     import matplotlib.pyplot as plt
 
-    testImage = cv2.imread('00001.jpg')
+    testImage = cv2.imread('00062.jpg')
     newImageRep = ImageRep.ImageRep(testImage)
     testRect = Rect.Rect(58, 100, 85, 122)
     a = HaarFeatures(newImageRep, testRect).GetFeatureVec()
@@ -70,3 +70,4 @@ if __name__ == '__main__':
     plt.subplot(212)
     plt.plot(sample_kernel_value)
     plt.show()
+s
