@@ -1,12 +1,13 @@
 import numpy as np
+import Coordinate
 
 
-class Point:
+class Point(Coordinate.Coordinate):
     def __init__(self, x, y):
         self.x = x
         self.y = y
 
-    def distance(self, sec_point):
+    def distance_from(self, sec_point):
         # P is another point
         dx = sec_point.x - self.x
         dy = sec_point.y - self.y

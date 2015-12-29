@@ -286,6 +286,7 @@ class LaRank:
         best_index = []
         for i in range(len(sample_list)):
             # scores_list = []
+            scores =
             scores_list = np.zeros(len(sample_list[i]))
             for (j, each_sample) in enumerate(sample_list[i]):
                 for each_vector in self.svs:
@@ -307,3 +308,8 @@ class LaRank:
     def debug_output(self, file_name):
         file_name.write(self.debug_inf)
         self.debug_inf = ''
+
+    def CalScoreFunction(self, sample_map):
+
+        for each_vector in self.svs:
+            sample_map.
