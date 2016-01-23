@@ -3,10 +3,15 @@ import SupportPattern
 import numpy as np
 import Kernel
 import random
+import Distance_transform
+import Point
+import Coordinate
+import PartsAnchorLocation
+import AuxFunction
 
 
 class LaRank:
-    def __init__(self, num, debug_mode, svBudgetSize=200):
+    def __init__(self, part_model, debug_mode, weight_feature, svBudgetSize=50):
         self.sps = []
         self.svs = []
         sv_max = svBudgetSize+2
@@ -14,10 +19,14 @@ class LaRank:
         self.sv_budget_size = svBudgetSize
         self.MAX_VALUE = 1000.0
         self.m_C = 100.0
-        self.parts_num = num
+        self.w_feature = weight_feature
+        self.parts_num = len(part_model)-1
         self.debug_mode = debug_mode
         if self.debug_mode:
             self.debug_inf = ''
+        part_top_left = [Point.Point(each_rect.x_min, each_rect.y_min) for each_rect in part_model]
+        self.anchor_location = PartsAnchorLocation.PartsAnchorLocation(part_top_left)
+        self.anchor_normal_factor = 0.0
 
     def Evaluate(self, vector_feature_list):
         # the parameter should be a list that indicate the index of each part in support pattern
@@ -28,12 +37,12 @@ class LaRank:
             support_pattern = self.sps[each_item.pattern_index]
             for (i, each_index) in enumerate(each_item.y_index):
                 kernel_value += Kernel.GaussianKernel_CalPro(vector_feature_list[i],
-                                                             support_pattern.feature_vectors[i][each_index])
+                                                             support_pattern.GetFeatureSingle(i, each_index))
             g += each_item.beta * kernel_value
         return g
 
-    def AddSupportVector(self, pattern_index, y, g):
-        new_support_vector = SupportVector.SupportVector(pattern_index, y, 0, g)
+    def AddSupportVector(self, pattern_index, y, anchor_l, g, mode):
+        new_support_vector = SupportVector.SupportVector(pattern_index, y, anchor_l, 0, g, mode)
         ind = len(self.svs)  # The ind means the index of the added new vector in the self.svs
         self.svs.append(new_support_vector)
         self.sps[pattern_index].AddRef()
@@ -66,8 +75,8 @@ class LaRank:
             res += Kernel.GaussianKernel_CalNorm(feature_list[i])
         return res
 
-    def Update(self, sample_list, image, y):
-        new_support_pattern = SupportPattern.SupportPattern(sample_list, image, y)
+    def Update(self, sample_list, y):
+        new_support_pattern = SupportPattern.SupportPattern(sample_list, y)
         self.sps.append(new_support_pattern)
 
         self.ProcessNew(len(self.sps) - 1)
@@ -78,10 +87,13 @@ class LaRank:
             self.BudgetMaintenance()
 
     def ProcessNew(self, ind):
-        p_index = self.AddSupportVector(ind, self.sps[ind].y_best,
-                                        self.Evaluate(self.sps[ind].GetFeatureGroup(self.sps[ind].y_best)))
+        p_index = self.AddSupportVector(ind, self.sps[ind].y_best, self.sps[ind].part_location,
+                                        self.Evaluate(self.sps[ind].GetFeatureGroup(self.sps[ind].y_best)),
+                                        'p')
         ind_grad_pair = self.MinGradient(ind)
-        n_index = self.AddSupportVector(ind, ind_grad_pair['index'], ind_grad_pair['gradient'])
+        n_index = self.AddSupportVector(ind, ind_grad_pair['index'],
+                                        ind_grad_pair['anchor_location'],
+                                        ind_grad_pair['gradient'], 'n')
         self.SMOStep(p_index, n_index)
 
     def BudgetMaintenance(self):
@@ -111,34 +123,60 @@ class LaRank:
 
         self.svs[p_index].beta += self.svs[n_index].beta
 
+        temp_beta = self.svs[n_index].beta
+        score_kernel_with_vector = self.m_K[n_index, :]
+        temp_value = score_kernel_with_vector[n_index]
+        score_kernel_with_vector[n_index] = score_kernel_with_vector[len(self.svs)]
+        score_kernel_with_vector[len(self.svs)] = temp_value
         self.RemoveSupportVector(n_index)
         if p_index == len(self.svs):
             p_index = n_index
 
+        # update the gradient of each vector
+        for (i, each_vector) in enumerate(self.svs):
+            each_vector.beta += temp_beta*score_kernel_with_vector[i]
+
         if self.svs[p_index].beta < 1e-6:
+            temp_beta = self.svs[p_index].beta
+            score_kernel_with_vector = self.m_K[p_index, :]
+            temp_value = score_kernel_with_vector[p_index]
+            score_kernel_with_vector[p_index] = score_kernel_with_vector[len(self.svs)]
+            score_kernel_with_vector[len(self.svs)] = temp_value
             self.RemoveSupportVector(p_index)
 
-        for vector in self.svs:
-            this_ps = self.sps[vector.pattern_index]
-            vector.gradient = - self.Loss(this_ps.y_candidates[vector.y_index], this_ps.y_candidates[this_ps.y_best]) \
-                              - self.Evaluate(self.sps[vector.pattern_index].feature_vectors[vector.y_index])
+            # update the gradient of each vector
+            for (i, each_vector) in enumerate(self.svs):
+                each_vector.beta += temp_beta*score_kernel_with_vector[i]
 
     def MinGradient(self, ind):
         pair = {'index': [], 'gradient': 0.0}
         current_sp = self.sps[ind]
-        for i in range(self.parts_num):
-            sep_gradient = 100.0
-            sep_index = -1
-            for (j, each_item) in enumerate(current_sp.y_candidates[i]):
-                grad = -self.Loss(each_item, current_sp.y_candidates[i][current_sp.y_best[i]]) - \
-                        self.Evaluate(current_sp.feature_vectors[i][j])
-                if grad < sep_gradient:
-                    sep_gradient = grad
-                    sep_index = j
 
-            if sep_index != -1:
-                pair['gradient'] += sep_gradient
-                pair['index'].append(sep_index)
+        score_map, location_row, location_column = self.CalDiscriminantFunction(current_sp.samples)
+
+        root_rect_group = current_sp.samples[0].rects
+        best_rect = current_sp.samples[0].GetRectByIndex(current_sp.y_best[0])
+        lost_function_map = self.CalLostFunction(root_rect_group, best_rect)
+
+        sum_score = score_map+lost_function_map*5
+
+        the_best = np.argmax(sum_score)
+
+        best_root_r = the_best//sum_score.shape[1]
+        best_root_c = the_best % sum_score.shape[1]
+
+        pair['gradient'] = -sum_score[best_root_r, best_root_c]
+
+        pair['index'].append(Coordinate.Coordinate(best_root_r, best_root_c))
+
+        for i in range(1, len(current_sp.samples)):
+            best_r = location_row[i-1][best_root_r, best_root_c]
+            best_c = location_column[i-1][best_root_r, best_root_c]
+            best_coordinate = Coordinate.Coordinate(best_r, best_c)
+            pair['index'].append(best_coordinate)
+
+        parts_rect = [current_sp.samples[i].GetRectByIndex(pair['index'][i]) for i in range(len(current_sp.samples))]
+        pair['anchor_location'] = AuxFunction.CalDistanceFromRect(parts_rect)
 
         return pair
 
@@ -233,6 +271,7 @@ class LaRank:
 
         ind_grad_pair = self.MinGradient(ind)
         i_n = -1
+
         for (temp_i, vector) in enumerate(self.svs):
             if vector.pattern_index != ind:
                 continue
@@ -241,7 +280,9 @@ class LaRank:
                 i_n = temp_i
                 break
         if i_n == -1:
-            i_n = self.AddSupportVector(ind, ind_grad_pair['index'], ind_grad_pair['gradient'])
+            i_n = self.AddSupportVector(ind, ind_grad_pair['index'],
+                                        ind_grad_pair['anchor_location'],
+                                        ind_grad_pair['gradient'], 'n')
 
         self.SMOStep(i_p, i_n)
 
@@ -282,34 +323,81 @@ class LaRank:
         for i in range(10):
             self.Optimize()
 
-    def MatchBestCandidate(self, sample_list):
-        best_index = []
-        for i in range(len(sample_list)):
-            # scores_list = []
-            scores =
-            scores_list = np.zeros(len(sample_list[i]))
-            for (j, each_sample) in enumerate(sample_list[i]):
-                for each_vector in self.svs:
-                    sp = self.sps[each_vector.pattern_index]
-                    scores_list[j] += each_vector.beta * \
-                                      Kernel.GaussianKernel_CalPro(sp.feature_vectors[i][each_vector.y_index[i]],
-                                                                   each_sample)
+    def MatchBestCandidate(self, all_parts_samples):
+        root_score_map, part_location_r, part_location_c = self.CalDiscriminantFunction(all_parts_samples)
 
-            if self.debug_mode:
-                self.debug_inf += '%f\t' % scores_list.max()
+        best_root = np.argmax(root_score_map)
+        best_root_r = best_root//all_parts_samples[0].column_num
+        best_root_c = best_root % all_parts_samples[0].column_num
 
-            best_index.append(np.argmax(scores_list))
+        best_rects = []
+        best_coordinate = []
+        best_coordinate.append(Coordinate.Coordinate(best_root_r, best_root_c))
+        best_rects.append(all_parts_samples[0].GetRectByIndex(best_coordinate[0]))
+        for i in range(1, len(all_parts_samples)):
+            best_r = part_location_r[i-1][best_root_r, best_root_c]
+            best_c = part_location_c[i-1][best_root_r, best_root_c]
+            best_coordinate.append(Coordinate.Coordinate(best_r, best_c))
+            best_rects.append(all_parts_samples[i].GetRectByIndex(best_coordinate[i]))
 
-        if self.debug_mode:
-            self.debug_inf += '\n'
-
-        return best_index
+        return best_rects, best_coordinate
 
     def debug_output(self, file_name):
         file_name.write(self.debug_inf)
         self.debug_inf = ''
 
-    def CalScoreFunction(self, sample_map):
+    def CalDiscriminantFunction(self, all_parts):
+        score_map = self.BestScoreMap(0, all_parts[0])
 
+        location_r = []
+        location_c = []
+
+        for part_num in range(1, len(all_parts)):
+            # scores_list = []
+            scores = self.BestScoreMap(part_num, all_parts[part_num])
+            scores = scores*self.w_feature
+            (max_map, r_index, c_index) = Distance_transform.Distance_Transform_L1(scores)
+
+            # translate the coordinates of each part into the corresponding of root
+            score_map += max_map
+            location_r.append(r_index)
+            location_c.append(c_index)
+
+        return score_map, location_r, location_c
+
+    def BestScoreMap(self, part_num, sample_map):
+        # sample_map is a SamplesGroup
+        score_map = np.zeros((sample_map.row_num, sample_map.column_num))
         for each_vector in self.svs:
-            sample_map.
+            sp_index = each_vector.pattern_index
+            y_index = each_vector.y_index[part_num]
+            sv_feature = self.sps[sp_index].samples[part_num].GetFeatureByIndex(y_index)
+            score_map += each_vector.beta*self.CalScoreFunction(sample_map, sv_feature)
+        return score_map
+
+    def CalScoreFunction(self, feature_map, feature_vector):
+        score = np.zeros((feature_map.row_num, feature_map.column_num))
+        for i in range(feature_map.row_num):
+            for j in range(feature_map.column_num):
+                score[i, j] = Kernel.GaussianKernel_CalPro(feature_map.feature[i, j, :], feature_vector)
+        return score
+
+    def update_anchor_location(self, sv_num):
+        current_sv = self.svs[sv_num]
+        temp_factor = self.anchor_normal_factor
+        temp_factor += current_sv.beta
+        self.anchor_location *= (self.anchor_normal_factor/temp_factor)
+        self.anchor_location += (current_sv.beta/temp_factor)*current_sv.part_anchor_location
+
+    def CalLostFunction(self, rect_group, ori_rect):
+        rows = len(rect_group)
+        columns = len(rect_group[0])
+        lose_score = np.zeros((rows, columns))
+
+        for row_num in range(rows):
+            for column_num in range(columns):
+                lose_score[row_num, column_num] = 1-ori_rect.Overlap(rect_group[row_num][column_num])
+
+        return lose_score
+
+

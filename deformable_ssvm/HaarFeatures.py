@@ -1,14 +1,12 @@
 import HaarRect
 import numpy
-
-import SampleLoc
-
+import Rect
 
 class HaarFeatures:
-    def __init__(self, repImage, bbox):
+    def __init__(self, image_rep, bbox):
         self.featureCount = 192
-        self.features = []
-        self.featVec = []
+        self.feature_rect = []
+        self.feature = []
 
         x = bbox.x_min
         y = bbox.y_min
@@ -24,13 +22,13 @@ class HaarFeatures:
                 for iw in s:
                     r = Rect.Rect(x+(ix-iw/2)*width, y+(iy-iw/2)*height, iw*width, iw*height)
                     for it in range(6):
-                        self.features.append(HaarRect.HaarRect(r, it))
+                        self.feature_rect.append(HaarRect.HaarRect(r, it))
 
-        for eachfeature in self.features:
-            self.featVec.append(eachfeature.Eval(repImage))
+        for each_feature in self.feature_rect:
+            self.feature.append(each_feature.Eval(image_rep))
 
     def GetFeatureVec(self):
-        return numpy.array(self.featVec)
+        return numpy.array(self.feature)
 
     def WriteHaarFeatures(self,filename):
         result = open(filename,'w')
@@ -41,9 +39,9 @@ class HaarFeatures:
 if __name__ == '__main__':
     import ImageRep
     import cv2
-    import Rect
     import Kernel
     import matplotlib.pyplot as plt
+    import SampleLoc
 
     testImage = cv2.imread('00062.jpg')
     newImageRep = ImageRep.ImageRep(testImage)
@@ -70,4 +68,3 @@ if __name__ == '__main__':
     plt.subplot(212)
     plt.plot(sample_kernel_value)
     plt.show()
-s

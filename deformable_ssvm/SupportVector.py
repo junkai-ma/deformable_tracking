@@ -1,5 +1,5 @@
 class SupportVector:
-    def __init__(self, p_index, y, b, g, mode, dis=0):
+    def __init__(self, p_index, y, anchor_location, b, g, mode):
         # parameter describe
         # pIndex : which SupportPattern this SupportVector belongs to
         # y      : the index of the feature which indicates the best y
@@ -11,4 +11,4 @@ class SupportVector:
         self.beta = b
         self.gradient = g
         self.type = mode
-        self.part_dis = dis
+        self.part_anchor_location = anchor_location

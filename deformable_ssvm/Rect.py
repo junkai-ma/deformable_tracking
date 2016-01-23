@@ -1,3 +1,5 @@
+import Point
+
 class Rect:
     def __init__(self, x_min=0, y_min=0, width=0, height=0):
         self.x_min = x_min
@@ -32,10 +34,10 @@ class Rect:
     def BottomRight(self):
         return (self.x_max, self.y_max)
 
-    def GetCenter(self):
+    def Center(self):
         x = self.x_min+self.width/2
         y = self.y_min+self.height/2
-        return x, y
+        return Point.Point(x, y)
 
     def Translate(self, xAdd, yAdd):
         self.x_min += xAdd
@@ -72,4 +74,9 @@ if __name__ == '__main__':
     print rect1.TopLeft()
     print rect1.BottomRight()
     print rect1.Overlap(rect2)
-    print rect1.GetCenter()
+    print rect1.Center()
+
+    rect_list = [Rect(0, 0, 0, 0)]*3
+    print rect_list
+    rect_list[0].SetXMin(3)
+    print rect_list[1]

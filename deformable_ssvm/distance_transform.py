@@ -1,11 +1,11 @@
 import numpy
 
 
-def Distance_Transform_L1(sample_function,):
+def Distance_Transform_L1(sample_function):
     distance = sample_function
     (height, width) = sample_function.shape
-    location_row = numpy.zeros(sample_function.shape)
-    location_column = numpy.zeros(sample_function.shape)
+    location_row = numpy.zeros(sample_function.shape, dtype='int')
+    location_column = numpy.zeros(sample_function.shape, dtype='int')
     # calculate the distance in each row
     for row_num in range(height):
         for column_num in range(1, width):

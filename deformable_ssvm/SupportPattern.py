@@ -1,34 +1,22 @@
-import HaarFeatures
 import Displacement
+import SamplesGroup
+import AuxFunction
 
 
 class SupportPattern:
-    def __init__(self, sample_list, image_rep, y):
-        self.y_candidates = []
-        self.AddYCandidate(sample_list)
-        self.feature_vectors = []
-        self.GetRectFeature(image_rep)
+    def __init__(self, all_parts_samples, y):
+        # instance of y:
+        self.samples = all_parts_samples
+        # for (i, each_sample_part) in enumerate(all_parts_samples):
+        #     self.samples.append(SamplesGroup.SamplesGroup(each_sample_part))
+        #     self.samples[i].CalFeatureFromImg(image_rep)
         # if use part-based model, y is a list
         self.y_best = y
         self.refCount = 0
-        self.part_location = []
-        root = sample_list[0][y[0]]
+        self.best_rect = []
         for i in range(1, len(y)):
-            each_rect = sample_list[i][y[i]]
-            temp_dis = Displacement.Displacement(each_rect[0]-root[0], each_rect[1]-root[1])
-            self.part_location.append(temp_dis)
-
-    def AddYCandidate(self, sample_list):
-        # in this function the rectangles should be translate by the coordinate of the center rectangle
-        self.y_candidates = sample_list
-
-    def GetRectFeature(self, image_rep):
-        for each_list in self.y_candidates:
-            each_part_feature = []
-            for each_item in each_list:
-                each_haar = HaarFeatures.HaarFeatures(image_rep, each_item)
-                each_part_feature.append(each_haar.GetFeatureVec())
-            self.feature_vectors.append(each_part_feature)
+            self.best_rect.append(self.samples[i].GetRectByIndex(y[i]))
+        self.part_location = AuxFunction.CalDistanceFromRect(self.best_rect)
 
     def AddRef(self):
         self.refCount += 1
@@ -37,9 +25,11 @@ class SupportPattern:
         self.refCount -= 1
 
     def GetFeatureGroup(self, part_indexes):
-        if len(part_indexes) == len(self.y_candidates):
-            feature_group = []
-            for (i, each_index) in enumerate(part_indexes):
-                feature_group.append(self.feature_vectors[i][each_index])
+        feature_group = []
+        for (i, each_index) in enumerate(part_indexes):
+            feature_group.append(self.samples[i].GetFeatureByIndex(each_index))
 
-            return feature_group
+        return feature_group
+
+    def GetFeatureSingle(self, idx, coordinate):
+        return self.samples[idx].GetFeatureByIndex(coordinate)
