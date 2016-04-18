@@ -29,10 +29,10 @@ class Rect:
         return self.width*self.height
 
     def TopLeft(self):
-        return (self.x_min, self.y_min)
+        return int(self.x_min), int(self.y_min)
 
     def BottomRight(self):
-        return (self.x_max, self.y_max)
+        return int(self.x_max), int(self.y_max)
 
     def Center(self):
         x = self.x_min+self.width/2

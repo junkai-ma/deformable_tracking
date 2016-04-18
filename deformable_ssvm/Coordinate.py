@@ -21,6 +21,10 @@ class Coordinate:
         else:
             return False
 
+    def SetZero(self):
+        self.x = 0
+        self.y = 0
+
 if __name__ == '__main__':
     first = Coordinate(10, 20)
     second = Coordinate(5, 8)

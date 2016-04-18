@@ -29,7 +29,7 @@ searchRadius = 10
 # SVM regularization parameter.
 svmC = 100.0
 # SVM budget size (0 = no budget).
-svmBudgetSize = 50
+svmBudgetSize = 100
 
 # the weight for regulation the kernel score and the distance function
 score_w = 8
@@ -51,4 +51,5 @@ bbox = [[57,156,255,329];[184,177,239,217];[91,238,113,264];[139,277,163,312];[1
 
 #the number of frames in the sequence
 startFrame = 1
-endFrame = 100
+endFrame = 20
+

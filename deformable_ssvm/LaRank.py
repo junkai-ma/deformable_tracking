@@ -8,6 +8,7 @@ import Point
 import Coordinate
 import PartsAnchorLocation
 import AuxFunction
+import Rect
 
 
 class LaRank:
@@ -15,7 +16,8 @@ class LaRank:
         self.sps = []
         self.svs = []
         sv_max = svBudgetSize+2
-        self.m_K = np.ndarray(shape=(sv_max, sv_max), dtype=float)
+        self.m_K = np.zeros(shape=(sv_max, sv_max), dtype=float)
+        # self.m_K = np.ndarray(shape=(sv_max, sv_max), dtype=float)
         self.sv_budget_size = svBudgetSize
         self.MAX_VALUE = 1000.0
         self.m_C = 100.0
@@ -24,8 +26,7 @@ class LaRank:
         self.debug_mode = debug_mode
         if self.debug_mode:
             self.debug_inf = ''
-        part_top_left = [Point.Point(each_rect.x_min, each_rect.y_min) for each_rect in part_model]
-        self.anchor_location = PartsAnchorLocation.PartsAnchorLocation(part_top_left)
+        self.anchor_location = PartsAnchorLocation.PartsAnchorLocation(part_model)
         self.anchor_normal_factor = 0.0
 
     def Evaluate(self, vector_feature_list):
@@ -86,6 +87,11 @@ class LaRank:
             self.Reprocess()
             self.BudgetMaintenance()
 
+        self.update_anchor_location()
+
+    def GetCandidateSamplesRect(self):
+        return self.anchor_location.Update_Rects()
+
     def ProcessNew(self, ind):
         p_index = self.AddSupportVector(ind, self.sps[ind].y_best, self.sps[ind].part_location,
                                         self.Evaluate(self.sps[ind].GetFeatureGroup(self.sps[ind].y_best)),
@@ -126,8 +132,15 @@ class LaRank:
         temp_beta = self.svs[n_index].beta
         score_kernel_with_vector = self.m_K[n_index, :]
         temp_value = score_kernel_with_vector[n_index]
-        score_kernel_with_vector[n_index] = score_kernel_with_vector[len(self.svs)]
-        score_kernel_with_vector[len(self.svs)] = temp_value
+        # score_kernel_with_vector[n_index] = score_kernel_with_vector[len(self.svs)]
+        try:
+            score_kernel_with_vector[n_index] = score_kernel_with_vector[len(self.svs)-1]
+        except IndexError:
+            print(str(n_index))
+            print(str(len(self.svs)))
+        finally:
+            score_kernel_with_vector[n_index] = score_kernel_with_vector[len(self.svs)-1]
+        score_kernel_with_vector[len(self.svs)-1] = temp_value
         self.RemoveSupportVector(n_index)
         if p_index == len(self.svs):
             p_index = n_index
@@ -140,8 +153,8 @@ class LaRank:
             temp_beta = self.svs[p_index].beta
             score_kernel_with_vector = self.m_K[p_index, :]
             temp_value = score_kernel_with_vector[p_index]
-            score_kernel_with_vector[p_index] = score_kernel_with_vector[len(self.svs)]
-            score_kernel_with_vector[len(self.svs)] = temp_value
+            score_kernel_with_vector[p_index] = score_kernel_with_vector[len(self.svs)-1]
+            score_kernel_with_vector[len(self.svs)-1] = temp_value
             self.RemoveSupportVector(p_index)
 
             # update the gradient of each vector
@@ -158,7 +171,7 @@ class LaRank:
         best_rect = current_sp.samples[0].GetRectByIndex(current_sp.y_best[0])
         lost_function_map = self.CalLostFunction(root_rect_group, best_rect)
 
-        sum_score = score_map+lost_function_map*5
+        sum_score = score_map+lost_function_map*150
 
         the_best = np.argmax(sum_score)
 
@@ -176,7 +189,8 @@ class LaRank:
             pair['index'].append(best_coordinate)
 
         parts_rect = [current_sp.samples[i].GetRectByIndex(pair['index'][i]) for i in range(len(current_sp.samples))]
-        pair['anchor_location'] = AuxFunction.CalDistanceFromRect(parts_rect)
+        # pair['anchor_location'] = AuxFunction.CalDistanceFromRect(parts_rect)
+        pair['anchor_location'] = PartsAnchorLocation.PartsAnchorLocation(parts_rect)
 
         return pair
 
@@ -382,12 +396,17 @@ class LaRank:
                 score[i, j] = Kernel.GaussianKernel_CalPro(feature_map.feature[i, j, :], feature_vector)
         return score
 
-    def update_anchor_location(self, sv_num):
-        current_sv = self.svs[sv_num]
-        temp_factor = self.anchor_normal_factor
-        temp_factor += current_sv.beta
-        self.anchor_location *= (self.anchor_normal_factor/temp_factor)
-        self.anchor_location += (current_sv.beta/temp_factor)*current_sv.part_anchor_location
+    def update_anchor_location(self):
+        self.anchor_location.SetToZero()
+        normalize_factor = 0
+        for current_sv in self.svs:
+            # only use the positive vector
+            if current_sv.beta > 0:
+                temp_anchor = current_sv.part_anchor_location*current_sv.beta
+                self.anchor_location.add_new(temp_anchor)
+                normalize_factor += current_sv.beta
+
+        self.anchor_location *= (1/normalize_factor)
 
     def CalLostFunction(self, rect_group, ori_rect):
         rows = len(rect_group)
@@ -400,4 +419,16 @@ class LaRank:
 
         return lose_score
 
+    def relocation_sample_rests(self, rects):
+        new_rect_locations = [rects[0], ]
+        # new_rect_locations.append(rects[0])
+        root_x = rects[0].x_min
+        root_y = rects[0].y_min
+        ind = 0
+        for each_anchor in self.anchor_location.anchor_location:
+            ind += 1
+            new_x = root_x+each_anchor.x
+            new_y = root_y+each_anchor.y
+            new_rect_locations.append(Rect.Rect(new_x, new_y, rects[ind].width, rects[ind].height))
 
+        return new_rect_locations

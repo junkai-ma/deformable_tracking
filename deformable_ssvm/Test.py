@@ -50,6 +50,7 @@ startFrame = Para.config_paras['startFrame']
 endFrame = Para.config_paras['endFrame']
 img = cv2.imread(imagePath.format(startFrame))
 imageRep = ImageRep.ImageRep(img)
+imageIntegral = imageRep.integralImages[0]
 image_size = img.shape
 image_height = image_size[0]
 image_width = image_size[1]
@@ -70,7 +71,7 @@ start_time = time.clock()
 samples_update = SampleLoc.PartsSample(targetRect, search_expend_w, search_expand_h)
 rect_feature_group = [SamplesGroup.SamplesGroup(each_rect_group) for each_rect_group in samples_update]
 for each_group in rect_feature_group:
-    each_group.CalFeatureFromImg(imageRep)
+    each_group.CalFeatureFromImg(imageIntegral)
 end_time = time.clock()-start_time
 print '2nd step time is %f' % end_time
 
@@ -106,11 +107,14 @@ for num in range(startFrame+1, endFrame):
     start_time = time.clock()
     img = cv2.imread(imagePath.format(num))
     imageRep = ImageRep.ImageRep(img)
+    imageIntegral = imageRep.integralImages[0]
 
-    samples_update = SampleLoc.PartsSample(targetRect, search_expend_w, search_expand_h)
+    sample_rects = learner.relocation_sample_rests(targetRect)
+    samples_update = SampleLoc.PartsSample(sample_rects, search_expend_w, search_expand_h)
+    # samples_update = SampleLoc.PartsSample(targetRect, search_expend_w, search_expand_h)
     rect_feature_group = [SamplesGroup.SamplesGroup(each_rect_group) for each_rect_group in samples_update]
     for each_group in rect_feature_group:
-        each_group.CalFeatureFromImg(imageRep)
+        each_group.CalFeatureFromImg(imageIntegral)
 
     targetRect, targetCoordinate = learner.MatchBestCandidate(rect_feature_group)
     learner.Update(rect_feature_group, targetCoordinate)
@@ -176,3 +180,4 @@ for num in range(startFrame+1, endFrame):
 result_file.close()
 print 'Ok'
 # debug_file.close()
+

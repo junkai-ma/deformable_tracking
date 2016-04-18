@@ -1,7 +1,8 @@
 import Displacement
 import SamplesGroup
 import AuxFunction
-
+import PartsAnchorLocation
+import Point
 
 class SupportPattern:
     def __init__(self, all_parts_samples, y):
@@ -14,9 +15,11 @@ class SupportPattern:
         self.y_best = y
         self.refCount = 0
         self.best_rect = []
-        for i in range(1, len(y)):
+        for i in range(0, len(y)):
             self.best_rect.append(self.samples[i].GetRectByIndex(y[i]))
-        self.part_location = AuxFunction.CalDistanceFromRect(self.best_rect)
+        # self.part_location = AuxFunction.CalDistanceFromRect(self.best_rect)
+        # part_top_left = [Point.Point(each_rect.x_min, each_rect.y_min) for each_rect in self.best_rect]
+        self.part_location = PartsAnchorLocation.PartsAnchorLocation(self.best_rect)
 
     def AddRef(self):
         self.refCount += 1
