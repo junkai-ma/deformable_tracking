@@ -103,9 +103,37 @@ cc = PixelSample(aa,10)
 for item in cc:
     print item
 '''
+
+
+def PartsSample(parts, expand_x, expand_y):
+
+    samples = []
+
+    for part_num in range(len(parts)):
+        temp_group = []
+        original_rect = parts[part_num]
+        height = original_rect.height
+        width = original_rect.width
+        for dy in range(-expand_x, expand_x+1):
+            temp_list_h = []
+            new_y = original_rect.y_min+dy
+            for dx in range(-expand_y, expand_y+1):
+                new_x = original_rect.x_min+dx
+                rect = Rect.Rect(new_x, new_y, width, height)
+                temp_list_h.append(rect)
+
+            temp_group.append(temp_list_h)
+
+        samples.append(temp_group)
+
+    return samples
+
+
 if __name__ == '__main__':
     center_example = Rect.Rect(10, 10, 4, 4)
-    root_example = Rect.Rect(8, 8, 8, 8)
-    sample_example = RegionSample(root_example, center_example, 2, 2, 2, 2)
-    for each_sample in sample_example:
-        print each_sample
+    part1 = Rect.Rect(8, 8, 8, 8)
+    part2 = Rect.Rect(14, 25, 10, 10)
+    roots = [center_example, part1, part2]
+    sample_example = PartsSample(roots, 4, 4)
+
+    print ('ok')

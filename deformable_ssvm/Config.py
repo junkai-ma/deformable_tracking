@@ -1,6 +1,6 @@
 class Config:
     
-    def __init__(self,path):
+    def __init__(self, path):
         self.config_paras = {}
         self.config_paras['quietMode'] = False
         self.config_paras['debug_mode'] = False
@@ -18,11 +18,11 @@ class Config:
         self.config_paras['partsNum'] = 0
 
         self.config_paras['initBBox'] = []
-        self.config_paras['rootBox'] = []
+        self.config_paras['score_w'] = 0
         self.config_paras['features'] = []
         self.config_paras['deformable_w'] = 0
 
-        for eachLine in open(path,'r'):
+        for eachLine in open(path, 'r'):
             eachLine = eachLine.strip(' ')
             eachLine = eachLine.strip('\t')
             eachLine = eachLine.rstrip('\n')
@@ -53,10 +53,10 @@ class Config:
                 self.config_paras['searchRadius'] = feature[2]
             elif feature[0] == 'svmC':
                 self.config_paras['svmC'] = feature[2]
-            elif feature[0] == 'deformable_w':
-                self.config_paras['deformable_w'] = float(feature[2])
+            elif feature[0] == 'score_w':
+                self.config_paras['score_w'] = int(feature[2])
             elif feature[0] == 'svmBudgetSize':
-                self.config_paras['svmBudgetSize'] = feature[2]
+                self.config_paras['svmBudgetSize'] = int(feature[2])
             elif feature[0] == 'feature':
                 # print feature
                 temp_feature = {'featureType': feature[2],
@@ -76,13 +76,6 @@ class Config:
                         each_rect.append(int(each_value))
 
                     self.config_paras['initBBox'].append(each_rect)
-
-            elif feature[0] == 'rootBox':
-                feature[2] = feature[2].lstrip('[')
-                feature[2] = feature[2].rstrip(']')
-                value = feature[2].split(',')
-                for each_value in value:
-                    self.config_paras['rootBox'].append(int(each_value))
 
             elif feature[0] == 'partsNum':
                 self.config_paras['partsNum'] = int(feature[2])

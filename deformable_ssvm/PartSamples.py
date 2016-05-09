@@ -1,5 +1,5 @@
 import SampleLoc
-import ObjectParts
+
 
 class PartSamples:
     def __init__(self,objectLoc,sampleStyle = 'radial'):

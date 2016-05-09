@@ -1,13 +1,16 @@
-import numpy
+import numpy as np
 import cv2
 import Rect
 import ImageRep
-import ObjectParts
-import PartSamples
 import Config
 import SampleLoc
 import HaarFeatures
 import LaRank
+import AuxFunction
+import SamplesGroup
+import time
+import Coordinate
+import draw_debug
 
 '''
 testImage = cv2.imread('00000001.jpg')
@@ -33,6 +36,7 @@ newImagerep.TargetVisible(target)
 '''
 
 # below is to read a sequence of images an input
+start_time = time.clock()
 Para = Config.Config('mytext.txt')
 
 print Para.config_paras
@@ -41,44 +45,52 @@ num_of_parts = Para.config_paras['partsNum']
 
 imagePath = Para.config_paras['sequencePath']
 targetRegion = Para.config_paras['initBBox']
-rootBox = Para.config_paras['rootBox']
-rootRect = Rect.Rect(rootBox[0], rootBox[1], rootBox[2]-rootBox[0], rootBox[3]-rootBox[1])
+# rootBox = Para.config_paras['rootBox']
+# rootRect = Rect.Rect(rootBox[0], rootBox[1], rootBox[2]-rootBox[0], rootBox[3]-rootBox[1])
 startFrame = Para.config_paras['startFrame']
 endFrame = Para.config_paras['endFrame']
 img = cv2.imread(imagePath.format(startFrame))
 imageRep = ImageRep.ImageRep(img)
+imageIntegral = imageRep.integralImages[0]
+image_size = img.shape
+image_height = image_size[0]
+image_width = image_size[1]
 
-'''
-targetRect = Rect.Rect(targetRegion[0], targetRegion[1],
-                       targetRegion[2]-targetRegion[0], targetRegion[3]-targetRegion[1])
-targetHaar = HaarFeatures.HaarFeatures(imageRep, targetRect)
-targetFeature = targetHaar.GetFeatureVec()
-'''
-targetRect = []
-distance = []
-for each_region in targetRegion:
-    target_temp = Rect.Rect(each_region[0],
-                            each_region[1],
-                            each_region[2] - each_region[0],
-                            each_region[3] - each_region[1])
-    targetRect.append(target_temp)
-    cv2.rectangle(img, (each_region[0], each_region[1]), (each_region[2], each_region[3]), (0, 255, 0))
-    temp_dis = [each_region[0]-rootRect[0], each_region[1]-rootRect[1]]
-    distance.append(temp_dis)
-cv2.rectangle(img, (rootBox[0], rootBox[1]), (rootBox[2], rootBox[3]), (255, 0, 0))
+expand_factor = 0.05
+search_expend_w = int(image_width*expand_factor)
+search_expand_h = int(image_height*expand_factor)
+
+kernel_score_w = Para.config_paras['score_w']
+sv_size = Para.config_paras['svmBudgetSize']
+
+targetRect = AuxFunction.TwoPointRegion2Rect(targetRegion)
+distance = AuxFunction.CalDistanceFromRect(targetRect)
+end_time = time.clock()-start_time
+print '1st step time is %f' % end_time
+
+start_time = time.clock()
+samples_update = SampleLoc.PartsSample(targetRect, search_expend_w, search_expand_h)
+rect_feature_group = [SamplesGroup.SamplesGroup(each_rect_group) for each_rect_group in samples_update]
+for each_group in rect_feature_group:
+    each_group.CalFeatureFromImg(imageIntegral)
+end_time = time.clock()-start_time
+print '2nd step time is %f' % end_time
+
+img = AuxFunction.AddPartRegionOnImage(img, targetRect)
 cv2.namedWindow('img')
 cv2.imshow('img', img)
 cv2.waitKey(0)
 
-learner = LaRank.LaRank(num_of_parts, Para.config_paras['debug_mode'])
-samples_update = []
-for i in range(num_of_parts):
-    # samples_update.append(SampleLoc.RadialSample(targetRect[i], 10, 8, 20)) # old sample method,comment 1
-    samples_update.append(SampleLoc.RegionSample(rootRect, targetRect[i], 2, 2, 10, 10))
-learner.Update(samples_update, imageRep, [0]*num_of_parts)
+print 'step2'
 
-output_file = open('result.txt', 'w')
-debug_file = open('debug.txt', 'w')
+initial_best_coordinate = [Coordinate.Coordinate(search_expend_w+1, search_expand_h+1)]*(len(targetRect))
+
+learner = LaRank.LaRank(targetRect, Para.config_paras['debug_mode'], kernel_score_w, sv_size)
+learner.Update(rect_feature_group, initial_best_coordinate)
+targetRect, targetCoordinate = learner.MatchBestCandidate(rect_feature_group)
+
+result_file = open('result.txt', 'w')
+
 '''
 samples = SampleLoc.RadialSample(targetRect,10,8)
 
@@ -91,71 +103,70 @@ for eachRect in samples:
 cv2.imshow('img',img)
 cv2.waitKey(0)
 '''
-for num in range(startFrame, endFrame):
+
+for num in range(startFrame+1, endFrame):
+    start_time = time.clock()
     img = cv2.imread(imagePath.format(num))
     imageRep = ImageRep.ImageRep(img)
+    imageIntegral = imageRep.integralImages[0]
 
-    samples = []
-    for i in range(num_of_parts):
-        samples.append(SampleLoc.RegionSample(rootRect, targetRect[i], 2, 2, 20, 20))
-        # samples.append(SampleLoc.PixelSample(targetRect[i], 20, False)) # comment 1
+    sample_rects = learner.relocation_sample_rests(targetRect)
+    samples_update = SampleLoc.PartsSample(sample_rects, search_expend_w, search_expand_h)
+    # samples_update = SampleLoc.PartsSample(targetRect, search_expend_w, search_expand_h)
+    rect_feature_group = [SamplesGroup.SamplesGroup(each_rect_group) for each_rect_group in samples_update]
+    for each_group in rect_feature_group:
+        each_group.CalFeatureFromImg(imageIntegral)
 
-    samples_feature_group = []
-    for i in range(num_of_parts):
-        samples_feature = []
-        for each_rect in samples[i]:
-            candidate = HaarFeatures.HaarFeatures(imageRep, each_rect)
-            samples_feature.append(candidate.GetFeatureVec())
-        samples_feature_group.append(samples_feature)
+    # debug mode
+    debug_data = []
+    for part_num in range(1, len(rect_feature_group)):
+        # scores_list = []
+        debug_data.append(learner.BestScoreMap(part_num, rect_feature_group[part_num]))
 
-    best_index = learner.MatchBestCandidate(samples_feature_group)
-    # calculate the root_rect
-    dx = 0
-    dy = 0
-    for i in range(num_of_parts):
-        old_best_part = targetRect[i]
-        new_best_part = samples[i][best_index[i]]
-        old_center_x, old_center_y = old_best_part.GetCenter()
-        new_center_x, new_center_y = new_best_part.GetCenter()
-        dx += (new_center_x-old_center_x)
-        dy += (new_center_y-old_center_y)
+    targetRect, targetCoordinate = learner.MatchBestCandidate(rect_feature_group)
+    learner.Update(rect_feature_group, targetCoordinate)
 
-    dx = dx/num_of_parts
-    dy = dy/num_of_parts
+    img = AuxFunction.AddPartRegionOnImage(img, targetRect)
+    cv2.imshow('img', img)
+    cv2.waitKey(100)
 
-    rootRect.Translate(dx, dy)
+    # debug model
+    img_for_debug = np.zeros_like(img)
+    img_for_debug[:, :, 0] = img[:, :, 2]
+    img_for_debug[:, :, 1] = img[:, :, 1]
+    img_for_debug[:, :, 2] = img[:, :, 0]
+    debug_win = draw_debug.DrawDebug()
+    debug_win.show_data(img_for_debug, debug_data)
 
-    targetRect = []
-    for i in range(num_of_parts):
-        targetRect.append(samples[i][best_index[i]])
+    if num%8 == 0:
+        print "the 8th frame"
 
-    samples_update = []
-    for i in range(num_of_parts):
-        samples_update.append(SampleLoc.RegionSample(rootRect, targetRect[i], 2, 2, 10, 10))
-        # samples_update.append(SampleLoc.RadialSample(targetRect[i], 10, 8, 20)) # comment 1
-
-    learner.Update(samples_update, imageRep, [0]*num_of_parts)
-
+    end_time = time.clock()-start_time
+    print '- -  '*10
+    print 'Cost time is %f' % end_time
     print 'current frame is the %d th\n' % num
     print 'the has %d patterns.\n' % len(learner.sps)
     print 'the has %d vectors.\n' % len(learner.svs)
 
-    for i in range(num_of_parts):
-        cv2.rectangle(img, (targetRect[i].x_min, targetRect[i].y_min), (targetRect[i].x_max, targetRect[i].y_max),
-                      (0, 255, 0))
+    # write the result to a text
+    result_file.write('[%d %d %d %d]\n' % (targetRect[0].x_min,
+                                           targetRect[0].y_min,
+                                           targetRect[0].x_max,
+                                           targetRect[0].y_max))
 
-    cv2.rectangle(img, (rootRect.x_min, rootRect.y_min), (rootRect.x_max, rootRect.y_max), (255, 0, 0))
-    cv2.imshow('img', img)
-    cv2.waitKey(100)
-
+    """
     for i in range(num_of_parts-1):
         output_file.write(targetRect[i].Rect2Str())
         output_file.write(',')
     output_file.write(targetRect[num_of_parts-1].Rect2Str())
     output_file.write('\n')
+    """
 
+    """
     if Para.config_paras['debug_mode']:
         learner.debug_output(debug_file)
+    """
+
     """
     # below is the tracking algorithm do not use the structure svm
     samples = SampleLoc.RadialSample(targetRect, 10, 8, 30)
@@ -183,5 +194,8 @@ for num in range(startFrame, endFrame):
     cv2.imshow('img', img)
     cv2.waitKey(100)
     """
-output_file.close()
-debug_file.close()
+
+result_file.close()
+print 'Ok'
+# debug_file.close()
+

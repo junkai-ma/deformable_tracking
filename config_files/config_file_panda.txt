@@ -5,7 +5,7 @@ quietMode = False
 debug_mode = True
 
 # base path for video sequences.
-sequencePath = E:\track_dataset\Board\Board\img\{:05d}.jpg
+sequencePath = E:\track_dataset\TLD\10_panda\{:05d}.jpg
 
 # path for output results file.
 # comment this out to disable output.
@@ -24,15 +24,15 @@ frameHeight = 233
 seed = 0
 
 # tracker search radius in pixels.
-searchRadius = 10
+searchRadius = 30
 
 # SVM regularization parameter.
 svmC = 100.0
 # SVM budget size (0 = no budget).
 svmBudgetSize = 100
 
-# the weight for regulation the kernel score and the distance function
-score_w = 8
+# deformable weight
+deformable_w = 0.5
 
 # image features to use.
 # format is: feature kernel [kernel-params]
@@ -46,10 +46,10 @@ feature = haar gaussian 0.2
 #feature = histogram intersection
 
 #bbox = [224,40,291,182]
-partsNum = 4
-bbox = [[57,156,255,329];[75,222,121,270];[129,217,168,259];[134,264,166,328];[182,174,223,247]]
+partsNum = 2
+bbox = [[142,99,159,117];[156,101,167,118]]
+rootBox = [142,99,167,118]
 
 #the number of frames in the sequence
-startFrame = 1
-endFrame = 100
-
+startFrame = 76
+endFrame = 96
