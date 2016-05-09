@@ -5,8 +5,10 @@ import Displacement
 
 def AddPartRegionOnImage(img, parts):
     img_new = img
-    for each_part in parts:
-        cv2.rectangle(img_new, each_part.TopLeft(), each_part.BottomRight(), (255, 255, 0))
+    rootRect = parts[0]
+    cv2.rectangle(img_new, rootRect.TopLeft(), rootRect.BottomRight(), (78, 73, 209))
+    for index in range(1, len(parts)):
+        cv2.rectangle(img_new, parts[index].TopLeft(), parts[index].BottomRight(), (255, 255, 0))
     return img_new
 
 

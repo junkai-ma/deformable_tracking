@@ -1,4 +1,4 @@
-import numpy
+import numpy as np
 import cv2
 import Rect
 import ImageRep
@@ -10,6 +10,7 @@ import AuxFunction
 import SamplesGroup
 import time
 import Coordinate
+import draw_debug
 
 '''
 testImage = cv2.imread('00000001.jpg')
@@ -55,7 +56,7 @@ image_size = img.shape
 image_height = image_size[0]
 image_width = image_size[1]
 
-expand_factor = 0.02
+expand_factor = 0.05
 search_expend_w = int(image_width*expand_factor)
 search_expand_h = int(image_height*expand_factor)
 
@@ -116,12 +117,29 @@ for num in range(startFrame+1, endFrame):
     for each_group in rect_feature_group:
         each_group.CalFeatureFromImg(imageIntegral)
 
+    # debug mode
+    debug_data = []
+    for part_num in range(1, len(rect_feature_group)):
+        # scores_list = []
+        debug_data.append(learner.BestScoreMap(part_num, rect_feature_group[part_num]))
+
     targetRect, targetCoordinate = learner.MatchBestCandidate(rect_feature_group)
     learner.Update(rect_feature_group, targetCoordinate)
 
     img = AuxFunction.AddPartRegionOnImage(img, targetRect)
     cv2.imshow('img', img)
     cv2.waitKey(100)
+
+    # debug model
+    img_for_debug = np.zeros_like(img)
+    img_for_debug[:, :, 0] = img[:, :, 2]
+    img_for_debug[:, :, 1] = img[:, :, 1]
+    img_for_debug[:, :, 2] = img[:, :, 0]
+    debug_win = draw_debug.DrawDebug()
+    debug_win.show_data(img_for_debug, debug_data)
+
+    if num%8 == 0:
+        print "the 8th frame"
 
     end_time = time.clock()-start_time
     print '- -  '*10

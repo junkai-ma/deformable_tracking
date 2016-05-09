@@ -23,17 +23,18 @@ class SamplesGroup:
 
         # the third parameter is dependent on the type of feature
         self.feature = np.empty((self.row_num, self.column_num, 192), dtype=np.float32)
-        self.feature_py = np.empty((self.row_num, self.column_num, 192), dtype=np.float32)
+        # self.feature_py = np.empty((self.row_num, self.column_num, 192), dtype=np.float32)
 
     def CalFeatureFromImg(self, integralImg):
         C_GetFeature.GetGroupFeature_fun(integralImg, self.toplefts, self.feature, self.rect_w, self.rect_h)
 
+    '''
     def CalFeatureFromImg_py(self, image_rep):
         for i in range(self.row_num):
             for j in range(self.column_num):
                 self.feature_py[i, j, :] = HaarFeatures.HaarFeatures(image_rep,
                                                                   self.rects[i][j]).GetFeatureVec()
-
+    '''
 
     def GetFeatureByIndex(self, coordinate):
         return self.feature[coordinate.x, coordinate.y, :]

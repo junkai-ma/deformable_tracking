@@ -9,6 +9,7 @@ import Coordinate
 import PartsAnchorLocation
 import AuxFunction
 import Rect
+import C_FilterResponse
 
 
 class LaRank:
@@ -28,6 +29,8 @@ class LaRank:
             self.debug_inf = ''
         self.anchor_location = PartsAnchorLocation.PartsAnchorLocation(part_model)
         self.anchor_normal_factor = 0.0
+        # for debug
+        self.object_function_value = 0.0
 
     def Evaluate(self, vector_feature_list):
         # the parameter should be a list that indicate the index of each part in support pattern
@@ -171,7 +174,19 @@ class LaRank:
         best_rect = current_sp.samples[0].GetRectByIndex(current_sp.y_best[0])
         lost_function_map = self.CalLostFunction(root_rect_group, best_rect)
 
-        sum_score = score_map+lost_function_map*150
+        # normalize the score_map and the lost_function_map
+        max_loss_value = np.max(lost_function_map)
+        min_loss_value = np.min(lost_function_map)
+
+        max_score_value = np.max(score_map)
+        min_score_value = np.min(score_map)
+
+        loss_factor = 0.35*(max_score_value-min_score_value)/(max_loss_value-min_loss_value)
+
+        if loss_factor == 0:
+            loss_factor = 1
+
+        sum_score = score_map+lost_function_map*loss_factor
 
         the_best = np.argmax(sum_score)
 
@@ -301,6 +316,7 @@ class LaRank:
         self.SMOStep(i_p, i_n)
 
     def Optimize(self):
+        self.object_function_value = self.object_function_debug()
         if len(self.sps) == 0:
             return
 
@@ -331,6 +347,7 @@ class LaRank:
             return
 
         self.SMOStep(i_p, i_n)
+        self.object_function_value = self.object_function_debug()
 
     def Reprocess(self):
         self.ProcessOld()
@@ -390,10 +407,15 @@ class LaRank:
         return score_map
 
     def CalScoreFunction(self, feature_map, feature_vector):
-        score = np.zeros((feature_map.row_num, feature_map.column_num))
+        score = np.empty((feature_map.row_num, feature_map.column_num), dtype=np.float32)
+        C_FilterResponse.filter_response_gauss(feature_map.feature, feature_vector, score, 0.2)
+        """
         for i in range(feature_map.row_num):
             for j in range(feature_map.column_num):
                 score[i, j] = Kernel.GaussianKernel_CalPro(feature_map.feature[i, j, :], feature_vector)
+
+        score_add = np.empty((feature_map.row_num, feature_map.column_num), dtype=np.float32)
+        """
         return score
 
     def update_anchor_location(self):
@@ -432,3 +454,15 @@ class LaRank:
             new_rect_locations.append(Rect.Rect(new_x, new_y, rects[ind].width, rects[ind].height))
 
         return new_rect_locations
+
+    def object_function_debug(self):
+        value = 0.0
+        for (i, each_vector) in enumerate(self.svs):
+            pattern_index = each_vector.pattern_index
+            rect_ori = self.sps[pattern_index].best_rect[0]
+            rect_each = self.sps[pattern_index].samples[0].GetRectByIndex(each_vector.y_index[0])
+            value -= each_vector.beta*self.Loss(rect_ori, rect_each)
+            for (j, each_vector_2) in enumerate(self.svs):
+                value -= 0.5*each_vector.beta*each_vector_2.beta*self.m_K[i, j]
+
+        return value

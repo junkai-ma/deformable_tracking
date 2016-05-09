@@ -11,7 +11,7 @@ def LinearKernel_CalNorm(x1):
 
 def GaussianKernel_CalPro(x1,x2):
     sigma = 0.2
-    return numpy.exp(-sigma*numpy.linalg.norm(x1-x2))
+    return numpy.exp(-sigma*(numpy.linalg.norm(x1-x2)**2))
 
 
 def GaussianKernel_CalNorm(x1):
