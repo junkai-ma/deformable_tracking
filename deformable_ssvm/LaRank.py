@@ -10,6 +10,7 @@ import PartsAnchorLocation
 import AuxFunction
 import Rect
 import C_FilterResponse
+import cv2
 
 
 class LaRank:
@@ -20,7 +21,7 @@ class LaRank:
         self.m_K = np.zeros(shape=(sv_max, sv_max), dtype=float)
         # self.m_K = np.ndarray(shape=(sv_max, sv_max), dtype=float)
         self.sv_budget_size = svBudgetSize
-        self.MAX_VALUE = 1000.0
+        self.MAX_VALUE = 100000.0
         self.m_C = 100.0
         self.w_feature = weight_feature
         self.parts_num = len(part_model)-1
@@ -55,10 +56,10 @@ class LaRank:
         current_feature = self.sps[pattern_index].GetFeatureGroup(y)
         for i in range(ind):
             temp_feature = self.sps[self.svs[i].pattern_index].GetFeatureGroup(self.svs[i].y_index)
-            self.m_K[(i, ind)] = self.CalTwoFeatureKernel(temp_feature, current_feature)
+            self.m_K[(i, ind)] = self.CalTwoFeatureKernel(temp_feature, current_feature)/self.parts_num
             self.m_K[(ind, i)] = self.m_K[(i, ind)]
 
-        self.m_K[(ind, ind)] = self.CalOneFeatureNorm(current_feature)
+        self.m_K[(ind, ind)] = self.CalOneFeatureNorm(current_feature)/self.parts_num
 
         return ind
 
@@ -79,8 +80,8 @@ class LaRank:
             res += Kernel.GaussianKernel_CalNorm(feature_list[i])
         return res
 
-    def Update(self, sample_list, y):
-        new_support_pattern = SupportPattern.SupportPattern(sample_list, y)
+    def Update(self, sample_list, y, im):
+        new_support_pattern = SupportPattern.SupportPattern(sample_list, y, im)
         self.sps.append(new_support_pattern)
 
         self.ProcessNew(len(self.sps) - 1)
@@ -129,8 +130,20 @@ class LaRank:
                 if val < min_value:
                     p_index = temp_j
                     n_index = temp_i
+                    min_value = val
 
-        self.svs[p_index].beta += self.svs[n_index].beta
+        # build the relationship of the sv and sp
+        sp_table = [[] for i in range(len(self.sps))]
+        for vector_num, each_vector in enumerate(self.svs):
+            sp_table[each_vector.pattern_index].append(vector_num)
+
+        # update the beta of the positive vector
+        if self.svs[p_index].y_index == self.sps[self.svs[p_index].pattern_index].y_best:
+            delta = 1
+        else:
+            delta = 0
+
+        self.svs[p_index].beta += max(0, min(self.svs[n_index].beta, self.m_C * delta - self.svs[p_index].beta))
 
         temp_beta = self.svs[n_index].beta
         score_kernel_with_vector = self.m_K[n_index, :]
@@ -148,11 +161,11 @@ class LaRank:
         if p_index == len(self.svs):
             p_index = n_index
 
-        # update the gradient of each vector
+        # update the gradient of each support vector
         for (i, each_vector) in enumerate(self.svs):
-            each_vector.beta += temp_beta*score_kernel_with_vector[i]
+            each_vector.gradient += temp_beta*score_kernel_with_vector[i]
 
-        if self.svs[p_index].beta < 1e-6:
+        if len(sp_table[self.svs[p_index].pattern_index]) == 2 or self.svs[p_index].beta < 1e-6:
             temp_beta = self.svs[p_index].beta
             score_kernel_with_vector = self.m_K[p_index, :]
             temp_value = score_kernel_with_vector[p_index]
@@ -160,9 +173,22 @@ class LaRank:
             score_kernel_with_vector[len(self.svs)-1] = temp_value
             self.RemoveSupportVector(p_index)
 
-            # update the gradient of each vector
-            for (i, each_vector) in enumerate(self.svs):
-                each_vector.beta += temp_beta*score_kernel_with_vector[i]
+        # update the gradient of each support vector
+        for (i, each_vector) in enumerate(self.svs):
+            each_vector.gradient += temp_beta*score_kernel_with_vector[i]
+
+
+        """
+        sp_table = [[] for i in range(len(self.sps))]
+        for vector_num, each_vector in enumerate(self.svs):
+            sp_table[each_vector.pattern_index].append(vector_num)
+
+
+        remove_list = []
+        for each_sp_group in sp_table:
+            if len(each_sp_group) == 1:
+                remove_list.append(each_sp_group[0])
+        """
 
     def MinGradient(self, ind):
         pair = {'index': [], 'gradient': 0.0}
@@ -181,7 +207,7 @@ class LaRank:
         max_score_value = np.max(score_map)
         min_score_value = np.min(score_map)
 
-        loss_factor = 0.35*(max_score_value-min_score_value)/(max_loss_value-min_loss_value)
+        loss_factor = 1.5*(max_score_value-min_score_value)/(max_loss_value-min_loss_value)
 
         if loss_factor == 0:
             loss_factor = 1
@@ -253,9 +279,9 @@ class LaRank:
         if self.sps[self.svs[ind].pattern_index].refCount == 0:
             # refCount equals to 0 means this support pattern will not provide support vector any more
             self.sps.pop(self.svs[ind].pattern_index)
-        for vector in self.svs:
-            if vector.pattern_index > self.svs[ind].pattern_index:
-                vector.pattern_index -= 1
+            for vector in self.svs:
+                if vector.pattern_index > self.svs[ind].pattern_index:
+                    vector.pattern_index -= 1
 
         if ind < len(self.svs) - 1:
             self.SwapSupportVectors(ind, len(self.svs) - 1)
@@ -466,3 +492,30 @@ class LaRank:
                 value -= 0.5*each_vector.beta*each_vector_2.beta*self.m_K[i, j]
 
         return value
+
+    def sv_output(self, p_im, n_im):
+        n_index = 0
+        p_index = 0
+        new_s = 60
+        part_num = 1
+        for each_sv in self.svs:
+            sp = self.sps[each_sv.pattern_index]
+            if each_sv.type == 'p':
+                # draw a p vector
+                roi = sp.samples[part_num].GetRectByIndex(each_sv.y_index[part_num])
+                p_im_patch = cv2.resize(sp.im[roi.y_min:roi.y_min+roi.height, roi.x_min:roi.x_min+roi.width],
+                                        (new_s, new_s))
+                start_row = (p_index//10)*new_s
+                start_col = (p_index%10)*new_s
+                p_im[start_row:start_row+new_s, start_col:start_col+new_s] = p_im_patch
+                p_index += 1
+
+            if each_sv.type == 'n':
+                # draw a p vector
+                roi = sp.samples[part_num].GetRectByIndex(each_sv.y_index[part_num])
+                n_im_patch = cv2.resize(sp.im[roi.y_min:roi.y_min+roi.height, roi.x_min:roi.x_min+roi.width],
+                                        (new_s, new_s))
+                start_row = (n_index//10)*new_s
+                start_col = (n_index%10)*new_s
+                n_im[start_row:start_row+new_s, start_col:start_col+new_s] = n_im_patch
+                n_index += 1

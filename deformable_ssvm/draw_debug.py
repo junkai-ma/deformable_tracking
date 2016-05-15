@@ -15,7 +15,7 @@ class DrawDebug(object):
     def show_data(self, image_data, other):
 
         self.image_axe.imshow(image_data)
-        for i in range(4):
+        for i in range(len(other)):
             im = self.data_axe[i].imshow(other[i])
 
         self.data_axe.cbar_axes[0].colorbar(im)

@@ -29,7 +29,7 @@ searchRadius = 10
 # SVM regularization parameter.
 svmC = 100.0
 # SVM budget size (0 = no budget).
-svmBudgetSize = 100
+svmBudgetSize = 40
 
 # the weight for regulation the kernel score and the distance function
 score_w = 8
@@ -47,7 +47,7 @@ feature = haar gaussian 0.2
 
 #bbox = [224,40,291,182]
 partsNum = 4
-bbox = [[57,156,255,329];[75,222,121,270];[129,217,168,259];[134,264,166,328];[182,174,223,247]]
+bbox = [[57,156,255,329];[94,220,191,288];[159,178,235,238]]
 
 #the number of frames in the sequence
 startFrame = 1
