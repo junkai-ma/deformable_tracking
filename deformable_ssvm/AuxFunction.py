@@ -1,7 +1,7 @@
 import Rect
 import cv2
 import Displacement
-
+import numpy as np
 
 def AddPartRegionOnImage(img, parts):
     img_new = img
@@ -23,3 +23,17 @@ def CalDistanceFromRect(parts):
         distances.append(dis)
 
     return distances
+
+
+def data_normal_mm(data):
+    max_val = np.max(data)
+    min_val = np.min(data)
+    mm = max_val-min_val
+    if mm == 0:
+        return data
+    else:
+        row, col = data.shape
+        for row_num in range(row):
+            for col_num in range(col):
+                data[row_num, col_num] = (data[row_num, col_num]-min_val)/mm
+        return data

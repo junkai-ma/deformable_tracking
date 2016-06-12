@@ -39,8 +39,14 @@ class Config:
                 self.config_paras['quietMode'] = feature[2]
             elif feature[0] == 'debug_mode':
                 self.config_paras['debug_mode'] = feature[2]
-            elif feature[0] == 'sequencePath':
-                self.config_paras['sequencePath'] = feature[2]
+            elif feature[0] == 'img_Path':
+                self.config_paras['img_path'] = feature[2]
+            elif feature[0] == 'seq_Path':
+                self.seq_path = feature[2]
+            elif feature[0] == 'expand_factor':
+                self.config_paras['expand_r'] = float(feature[2])
+            elif feature[0] == 'loss_fun_w':
+                self.config_paras['loss_w'] = float(feature[2])
             # elif feature[0] == 'sequenceName':
                 # self.config_paras['sequenceName'] = feature[2]
             elif feature[0] == 'resultsPath':

@@ -105,7 +105,7 @@ for item in cc:
 '''
 
 
-def PartsSample(parts, expand_x, expand_y):
+def PartsSample(parts, expand_x, expand_y, sample_step=1):
 
     samples = []
 
@@ -114,11 +114,14 @@ def PartsSample(parts, expand_x, expand_y):
         original_rect = parts[part_num]
         height = original_rect.height
         width = original_rect.width
-        for dy in range(-expand_x, expand_x+1):
+        for dy in range(-expand_x, expand_x+1, sample_step):
             temp_list_h = []
-            new_y = original_rect.y_min+dy
-            for dx in range(-expand_y, expand_y+1):
-                new_x = original_rect.x_min+dx
+            new_y = max(0, original_rect.y_min+dy)
+            # new_height = min(height, m_height-new_y)
+            for dx in range(-expand_y, expand_y+1, sample_step):
+                new_x = max(0, original_rect.x_min+dx)
+                # new_width = min(width, m_width-new_x)
+                # rect = Rect.Rect(new_x, new_y, new_width, new_height)
                 rect = Rect.Rect(new_x, new_y, width, height)
                 temp_list_h.append(rect)
 

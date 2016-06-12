@@ -3,8 +3,7 @@ import SupportPattern
 import numpy as np
 import Kernel
 import random
-import Distance_transform
-import Point
+import distance_transform
 import Coordinate
 import PartsAnchorLocation
 import AuxFunction
@@ -14,7 +13,7 @@ import cv2
 
 
 class LaRank:
-    def __init__(self, part_model, debug_mode, weight_feature, svBudgetSize=50):
+    def __init__(self, part_model, debug_mode, weight_feature, loss_w, svBudgetSize=50):
         self.sps = []
         self.svs = []
         sv_max = svBudgetSize+2
@@ -32,6 +31,7 @@ class LaRank:
         self.anchor_normal_factor = 0.0
         # for debug
         self.object_function_value = 0.0
+        self.loss_w = loss_w
 
     def Evaluate(self, vector_feature_list):
         # the parameter should be a list that indicate the index of each part in support pattern
@@ -87,7 +87,7 @@ class LaRank:
         self.ProcessNew(len(self.sps) - 1)
         self.BudgetMaintenance()
 
-        for i in range(10):
+        for i in range(5):
             self.Reprocess()
             self.BudgetMaintenance()
 
@@ -207,7 +207,7 @@ class LaRank:
         max_score_value = np.max(score_map)
         min_score_value = np.min(score_map)
 
-        loss_factor = 1.5*(max_score_value-min_score_value)/(max_loss_value-min_loss_value)
+        loss_factor = self.loss_w*(max_score_value-min_score_value)/(max_loss_value-min_loss_value)
 
         if loss_factor == 0:
             loss_factor = 1
@@ -342,7 +342,7 @@ class LaRank:
         self.SMOStep(i_p, i_n)
 
     def Optimize(self):
-        self.object_function_value = self.object_function_debug()
+        # self.object_function_value = self.object_function_debug()
         if len(self.sps) == 0:
             return
 
@@ -373,7 +373,7 @@ class LaRank:
             return
 
         self.SMOStep(i_p, i_n)
-        self.object_function_value = self.object_function_debug()
+        # self.object_function_value = self.object_function_debug()
 
     def Reprocess(self):
         self.ProcessOld()
@@ -405,6 +405,8 @@ class LaRank:
 
     def CalDiscriminantFunction(self, all_parts):
         score_map = self.BestScoreMap(0, all_parts[0])
+        score_map = AuxFunction.data_normal_mm(score_map)
+        score_map = score_map*self.w_feature
 
         location_r = []
         location_c = []
@@ -412,13 +414,16 @@ class LaRank:
         for part_num in range(1, len(all_parts)):
             # scores_list = []
             scores = self.BestScoreMap(part_num, all_parts[part_num])
+            scores = AuxFunction.data_normal_mm(scores)
             scores = scores*self.w_feature
-            (max_map, r_index, c_index) = Distance_transform.Distance_Transform_L1(scores)
+            (max_map, r_index, c_index) = distance_transform.Distance_Transform_L1(scores)
 
             # translate the coordinates of each part into the corresponding of root
             score_map += max_map
             location_r.append(r_index)
             location_c.append(c_index)
+
+        score_map /= len(all_parts)
 
         return score_map, location_r, location_c
 
@@ -429,7 +434,9 @@ class LaRank:
             sp_index = each_vector.pattern_index
             y_index = each_vector.y_index[part_num]
             sv_feature = self.sps[sp_index].samples[part_num].GetFeatureByIndex(y_index)
-            score_map += each_vector.beta*self.CalScoreFunction(sample_map, sv_feature)
+            new_score_map = self.CalScoreFunction(sample_map, sv_feature)
+            score_map += each_vector.beta*new_score_map
+
         return score_map
 
     def CalScoreFunction(self, feature_map, feature_vector):
@@ -446,7 +453,7 @@ class LaRank:
 
     def update_anchor_location(self):
         self.anchor_location.SetToZero()
-        normalize_factor = 0
+        normalize_factor = 1
         for current_sv in self.svs:
             # only use the positive vector
             if current_sv.beta > 0:

@@ -23,16 +23,19 @@ frameHeight = 233
 # seed for random number generator.
 seed = 0
 
-# tracker search radius in pixels.
-searchRadius = 10
-
 # SVM regularization parameter.
 svmC = 100.0
 # SVM budget size (0 = no budget).
-svmBudgetSize = 40
+svmBudgetSize = 60
 
 # the weight for regulation the kernel score and the distance function
-score_w = 8
+score_w = 20
+
+# the weight for regulation the loss function
+loss_fun_w = 1.1
+
+# tracker search radius in pixels.
+expand_factor = 0.04
 
 # image features to use.
 # format is: feature kernel [kernel-params]
@@ -51,5 +54,5 @@ bbox = [[57,156,255,329];[94,220,191,288];[159,178,235,238]]
 
 #the number of frames in the sequence
 startFrame = 1
-endFrame = 100
+endFrame = 698
 
